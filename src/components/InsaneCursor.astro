@@ -1,0 +1,253 @@
+---
+// The most insane cursor effect that follows mouse with physics!
+---
+
+<div id="cursor" class="fixed top-0 left-0 w-6 h-6 pointer-events-none z-[9999] mix-blend-difference">
+  <div id="cursor-dot" class="absolute inset-0 bg-white rounded-full transition-transform duration-150"></div>
+  <div id="cursor-outline" class="absolute inset-0 border-2 border-white rounded-full transition-all duration-300"></div>
+</div>
+
+<div id="cursor-trail" class="fixed top-0 left-0 pointer-events-none z-[9998]"></div>
+
+<script>
+  class InsaneCursor {
+    constructor() {
+      this.cursor = document.getElementById('cursor');
+      this.cursorDot = document.getElementById('cursor-dot');
+      this.cursorOutline = document.getElementById('cursor-outline');
+      this.trailContainer = document.getElementById('cursor-trail');
+      
+      this.mouse = { x: 0, y: 0 };
+      this.cursorPos = { x: 0, y: 0 };
+      this.trail = [];
+      this.maxTrailLength = 20;
+      
+      this.isHovering = false;
+      this.isClicking = false;
+      
+      this.init();
+    }
+
+    init() {
+      // Hide default cursor
+      document.body.style.cursor = 'none';
+      
+      // Create trail particles
+      for (let i = 0; i < this.maxTrailLength; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'absolute w-1 h-1 bg-blue-400 rounded-full pointer-events-none';
+        particle.style.opacity = (1 - i / this.maxTrailLength) * 0.8;
+        this.trailContainer.appendChild(particle);
+        this.trail.push({
+          element: particle,
+          x: 0,
+          y: 0
+        });
+      }
+      
+      this.addEventListeners();
+      this.animate();
+    }
+
+    addEventListeners() {
+      // Mouse movement
+      document.addEventListener('mousemove', (e) => {
+        this.mouse.x = e.clientX;
+        this.mouse.y = e.clientY;
+      });
+
+      // Mouse enter/leave window
+      document.addEventListener('mouseenter', () => {
+        this.cursor.style.opacity = '1';
+      });
+
+      document.addEventListener('mouseleave', () => {
+        this.cursor.style.opacity = '0';
+      });
+
+      // Click effects
+      document.addEventListener('mousedown', () => {
+        this.isClicking = true;
+        this.cursorDot.style.transform = 'scale(0.5)';
+        this.cursorOutline.style.transform = 'scale(2)';
+        this.createClickRipple();
+      });
+
+      document.addEventListener('mouseup', () => {
+        this.isClicking = false;
+        this.cursorDot.style.transform = 'scale(1)';
+        this.cursorOutline.style.transform = 'scale(1)';
+      });
+
+      // Hover effects for interactive elements
+      this.setupHoverEffects();
+    }
+
+    setupHoverEffects() {
+      const interactiveElements = document.querySelectorAll('a, button, .clickable, .magnetic');
+      
+      interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          this.isHovering = true;
+          this.cursorDot.style.transform = 'scale(0.3)';
+          this.cursorOutline.style.transform = 'scale(3)';
+          this.cursorOutline.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+          
+          // Add magnetic effect
+          this.addMagneticEffect(element);
+        });
+
+        element.addEventListener('mouseleave', () => {
+          this.isHovering = false;
+          this.cursorDot.style.transform = 'scale(1)';
+          this.cursorOutline.style.transform = 'scale(1)';
+          this.cursorOutline.style.backgroundColor = 'transparent';
+          
+          this.removeMagneticEffect();
+        });
+      });
+
+      // Text selection effect
+      const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span');
+      textElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          this.cursor.style.mixBlendMode = 'difference';
+          this.cursorDot.style.backgroundColor = '#3B82F6';
+        });
+
+        element.addEventListener('mouseleave', () => {
+          this.cursor.style.mixBlendMode = 'difference';
+          this.cursorDot.style.backgroundColor = 'white';
+        });
+      });
+    }
+
+    addMagneticEffect(element) {
+      const rect = element.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const mouseMoveHandler = (e) => {
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        if (distance < 100) {
+          const force = (100 - distance) / 100;
+          this.cursorPos.x = e.clientX + deltaX * force * 0.3;
+          this.cursorPos.y = e.clientY + deltaY * force * 0.3;
+        }
+      };
+      
+      this.magneticHandler = mouseMoveHandler;
+      document.addEventListener('mousemove', mouseMoveHandler);
+    }
+
+    removeMagneticEffect() {
+      if (this.magneticHandler) {
+        document.removeEventListener('mousemove', this.magneticHandler);
+        this.magneticHandler = null;
+      }
+    }
+
+    createClickRipple() {
+      const ripple = document.createElement('div');
+      ripple.className = 'absolute border border-blue-400 rounded-full pointer-events-none';
+      ripple.style.left = this.mouse.x - 10 + 'px';
+      ripple.style.top = this.mouse.y - 10 + 'px';
+      ripple.style.width = '20px';
+      ripple.style.height = '20px';
+      
+      document.body.appendChild(ripple);
+      
+      // Animate ripple
+      let scale = 0;
+      let opacity = 1;
+      
+      const animateRipple = () => {
+        scale += 2;
+        opacity -= 0.05;
+        
+        ripple.style.transform = `scale(${scale})`;
+        ripple.style.opacity = opacity;
+        
+        if (opacity > 0) {
+          requestAnimationFrame(animateRipple);
+        } else {
+          ripple.remove();
+        }
+      };
+      
+      requestAnimationFrame(animateRipple);
+    }
+
+    updateTrail() {
+      // Shift trail positions
+      for (let i = this.trail.length - 1; i > 0; i--) {
+        this.trail[i].x = this.trail[i - 1].x;
+        this.trail[i].y = this.trail[i - 1].y;
+      }
+      
+      // Update first trail particle to cursor position
+      this.trail[0].x = this.cursorPos.x;
+      this.trail[0].y = this.cursorPos.y;
+      
+      // Update DOM elements
+      this.trail.forEach((particle, index) => {
+        particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+        
+        // Add some randomness for organic feel
+        const jitter = Math.sin(Date.now() * 0.001 + index) * 0.5;
+        particle.element.style.transform += ` rotate(${jitter}deg)`;
+      });
+    }
+
+    animate() {
+      // Smooth cursor movement with easing
+      const ease = 0.15;
+      
+      if (!this.magneticHandler) {
+        this.cursorPos.x += (this.mouse.x - this.cursorPos.x) * ease;
+        this.cursorPos.y += (this.mouse.y - this.cursorPos.y) * ease;
+      }
+      
+      // Update cursor position
+      this.cursor.style.transform = `translate(${this.cursorPos.x - 12}px, ${this.cursorPos.y - 12}px)`;
+      
+      // Update trail
+      this.updateTrail();
+      
+      // Add breathing effect
+      const breathe = Math.sin(Date.now() * 0.003) * 0.1 + 1;
+      if (!this.isHovering && !this.isClicking) {
+        this.cursorOutline.style.transform = `scale(${breathe})`;
+      }
+      
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Only initialize on desktop
+    if (window.innerWidth > 768) {
+      new InsaneCursor();
+    }
+  });
+</script>
+
+<style>
+  * {
+    cursor: none !important;
+  }
+  
+  @media (max-width: 768px) {
+    #cursor, #cursor-trail {
+      display: none !important;
+    }
+    
+    * {
+      cursor: auto !important;
+    }
+  }
+</style>

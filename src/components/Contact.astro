@@ -1,0 +1,380 @@
+---
+// Advanced Contact section with interactive form and animations
+---
+
+<section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<!-- Section Header -->
+		<div class="text-center mb-16">
+			<h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+				Let's Work
+				<span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+					Together
+				</span>
+			</h2>
+			<p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+				Ready to bring your ideas to life? Get in touch and let's create something amazing together.
+			</p>
+			<div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mx-auto mt-6"></div>
+		</div>
+
+		<div class="grid lg:grid-cols-2 gap-12">
+			<!-- Contact Information -->
+			<div class="space-y-8">
+				<div>
+					<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Get In Touch</h3>
+					<p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
+						I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and innovation. Drop me a message and I'll get back to you as soon as possible.
+					</p>
+				</div>
+
+				<!-- Contact Cards -->
+				<div class="space-y-6">
+					<div class="contact-card group flex items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+						<div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+							<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+							</svg>
+						</div>
+						<div>
+							<h4 class="text-lg font-semibold text-gray-900 dark:text-white">Email</h4>
+							<p class="text-gray-600 dark:text-gray-400">your.email@example.com</p>
+						</div>
+					</div>
+
+					<div class="contact-card group flex items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+						<div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+							<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+							</svg>
+						</div>
+						<div>
+							<h4 class="text-lg font-semibold text-gray-900 dark:text-white">Phone</h4>
+							<p class="text-gray-600 dark:text-gray-400">+1 (555) 123-4567</p>
+						</div>
+					</div>
+
+					<div class="contact-card group flex items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+						<div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+							<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+							</svg>
+						</div>
+						<div>
+							<h4 class="text-lg font-semibold text-gray-900 dark:text-white">Location</h4>
+							<p class="text-gray-600 dark:text-gray-400">New York, NY</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Social Links -->
+				<div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Follow Me</h4>
+					<div class="flex space-x-4">
+						<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link w-12 h-12 bg-gray-700 hover:bg-gray-800 text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
+							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+							</svg>
+						</a>
+						<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
+							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+							</svg>
+						</a>
+						<a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link w-12 h-12 bg-blue-400 hover:bg-blue-500 text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
+							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Contact Form -->
+			<div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
+				<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send a Message</h3>
+				
+				<form id="contact-form" class="space-y-6">
+					<div class="grid md:grid-cols-2 gap-6">
+						<div class="form-group">
+							<label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
+							<input 
+								type="text" 
+								id="firstName" 
+								name="firstName" 
+								required
+								class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+								placeholder="John"
+							>
+							<div class="form-error hidden text-red-500 text-sm mt-1"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
+							<input 
+								type="text" 
+								id="lastName" 
+								name="lastName" 
+								required
+								class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+								placeholder="Doe"
+							>
+							<div class="form-error hidden text-red-500 text-sm mt-1"></div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+						<input 
+							type="email" 
+							id="email" 
+							name="email" 
+							required
+							class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+							placeholder="john@example.com"
+						>
+						<div class="form-error hidden text-red-500 text-sm mt-1"></div>
+					</div>
+
+					<div class="form-group">
+						<label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+						<select 
+							id="subject" 
+							name="subject" 
+							required
+							class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white"
+						>
+							<option value="">Select a subject...</option>
+							<option value="project">New Project Inquiry</option>
+							<option value="collaboration">Collaboration Opportunity</option>
+							<option value="consultation">Consultation Request</option>
+							<option value="other">Other</option>
+						</select>
+						<div class="form-error hidden text-red-500 text-sm mt-1"></div>
+					</div>
+
+					<div class="form-group">
+						<label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+						<textarea 
+							id="message" 
+							name="message" 
+							required
+							rows="6"
+							class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-white resize-none"
+							placeholder="Tell me about your project or how I can help you..."
+						></textarea>
+						<div class="form-error hidden text-red-500 text-sm mt-1"></div>
+					</div>
+
+					<!-- Form Status -->
+					<div id="form-status" class="hidden p-4 rounded-lg text-center"></div>
+
+					<button 
+						type="submit" 
+						id="submit-btn"
+						class="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+					>
+						<span class="submit-text">Send Message</span>
+						<span class="loading-text hidden">Sending...</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.contact-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+	}
+	
+	.form-group input:focus,
+	.form-group select:focus,
+	.form-group textarea:focus {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 20px rgba(59, 130, 246, 0.1);
+	}
+	
+	.form-group.error input,
+	.form-group.error select,
+	.form-group.error textarea {
+		border-color: #ef4444;
+		box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+	}
+	
+	.form-group.success input,
+	.form-group.success select,
+	.form-group.success textarea {
+		border-color: #10b981;
+		box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+	}
+	
+	.social-link:hover {
+		transform: translateY(-4px) scale(1.1);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	}
+</style>
+
+<script>
+	// Contact form functionality
+	class ContactForm {
+		constructor() {
+			this.form = document.getElementById('contact-form');
+			this.submitBtn = document.getElementById('submit-btn');
+			this.formStatus = document.getElementById('form-status');
+			this.submitText = this.submitBtn.querySelector('.submit-text');
+			this.loadingText = this.submitBtn.querySelector('.loading-text');
+			
+			this.init();
+		}
+		
+		init() {
+			this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+			
+			// Real-time validation
+			const inputs = this.form.querySelectorAll('input, select, textarea');
+			inputs.forEach(input => {
+				input.addEventListener('blur', () => this.validateField(input));
+				input.addEventListener('input', () => this.clearFieldError(input));
+			});
+		}
+		
+		validateField(field) {
+			const formGroup = field.closest('.form-group');
+			const errorDiv = formGroup.querySelector('.form-error');
+			let isValid = true;
+			let errorMessage = '';
+			
+			// Clear previous states
+			formGroup.classList.remove('error', 'success');
+			errorDiv.classList.add('hidden');
+			
+			// Validation rules
+			if (field.hasAttribute('required') && !field.value.trim()) {
+				isValid = false;
+				errorMessage = 'This field is required.';
+			} else if (field.type === 'email' && field.value) {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(field.value)) {
+					isValid = false;
+					errorMessage = 'Please enter a valid email address.';
+				}
+			} else if (field.name === 'firstName' || field.name === 'lastName') {
+				if (field.value && field.value.length < 2) {
+					isValid = false;
+					errorMessage = 'Name must be at least 2 characters long.';
+				}
+			} else if (field.name === 'message' && field.value) {
+				if (field.value.length < 10) {
+					isValid = false;
+					errorMessage = 'Message must be at least 10 characters long.';
+				}
+			}
+			
+			// Apply validation state
+			if (!isValid) {
+				formGroup.classList.add('error');
+				errorDiv.textContent = errorMessage;
+				errorDiv.classList.remove('hidden');
+			} else if (field.value.trim()) {
+				formGroup.classList.add('success');
+			}
+			
+			return isValid;
+		}
+		
+		clearFieldError(field) {
+			const formGroup = field.closest('.form-group');
+			formGroup.classList.remove('error');
+			formGroup.querySelector('.form-error').classList.add('hidden');
+		}
+		
+		validateForm() {
+			const fields = this.form.querySelectorAll('input[required], select[required], textarea[required]');
+			let isValid = true;
+			
+			fields.forEach(field => {
+				if (!this.validateField(field)) {
+					isValid = false;
+				}
+			});
+			
+			return isValid;
+		}
+		
+		async handleSubmit(e) {
+			e.preventDefault();
+			
+			if (!this.validateForm()) {
+				this.showStatus('error', 'Please fix the errors above and try again.');
+				return;
+			}
+			
+			// Show loading state
+			this.setLoadingState(true);
+			
+			// Simulate form submission (replace with actual API call)
+			try {
+				await this.simulateFormSubmission();
+				this.showStatus('success', 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.');
+				this.form.reset();
+				this.clearAllFieldStates();
+			} catch (error) {
+				this.showStatus('error', 'Sorry, there was an error sending your message. Please try again later.');
+			} finally {
+				this.setLoadingState(false);
+			}
+		}
+		
+		async simulateFormSubmission() {
+			// Simulate API call delay
+			return new Promise((resolve, reject) => {
+				setTimeout(() => {
+					// Simulate random success/failure for demo
+					Math.random() > 0.1 ? resolve() : reject();
+				}, 2000);
+			});
+		}
+		
+		setLoadingState(loading) {
+			if (loading) {
+				this.submitBtn.disabled = true;
+				this.submitText.classList.add('hidden');
+				this.loadingText.classList.remove('hidden');
+			} else {
+				this.submitBtn.disabled = false;
+				this.submitText.classList.remove('hidden');
+				this.loadingText.classList.add('hidden');
+			}
+		}
+		
+		showStatus(type, message) {
+			this.formStatus.className = `p-4 rounded-lg text-center ${
+				type === 'success' 
+					? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border border-green-300 dark:border-green-700'
+					: 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 border border-red-300 dark:border-red-700'
+			}`;
+			this.formStatus.textContent = message;
+			this.formStatus.classList.remove('hidden');
+			
+			// Auto-hide after 5 seconds
+			setTimeout(() => {
+				this.formStatus.classList.add('hidden');
+			}, 5000);
+		}
+		
+		clearAllFieldStates() {
+			const formGroups = this.form.querySelectorAll('.form-group');
+			formGroups.forEach(group => {
+				group.classList.remove('error', 'success');
+				group.querySelector('.form-error').classList.add('hidden');
+			});
+		}
+	}
+	
+	// Initialize contact form
+	document.addEventListener('DOMContentLoaded', () => {
+		new ContactForm();
+	});
+</script>
