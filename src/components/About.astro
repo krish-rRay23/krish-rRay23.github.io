@@ -2,7 +2,7 @@
 // Advanced About section with interactive elements
 ---
 
-<section id="about" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+<section id="about" class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 sr-zoom">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="grid lg:grid-cols-2 gap-12 items-center">
 			<!-- Left Content -->
@@ -20,28 +20,28 @@
 
 				<!-- Description -->
 				<div class="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-					<p class="animate-fade-in-left">
+					<p class="sr-reveal" style="--sr-delay:0ms">
 						I'm a passionate, aspiring <strong class="text-gray-900 dark:text-white">Software Engineer</strong> with dual international internship experience in Robotics, AI/ML, and Full-Stack Development. My work bridges advanced software engineering with intelligent automation, delivering scalable, production-grade solutions.
 					</p>
-					<p class="animate-fade-in-left animation-delay-200">
+					<p class="sr-reveal" style="--sr-delay:120ms">
 						I specialize in modern web technologies and building autonomous robotics systems using <strong class="text-blue-600">Python</strong>, <strong class="text-green-600">ROS2</strong>, <strong class="text-orange-600">FastAPI</strong>, and <strong class="text-purple-600">Node.js</strong>, <strong class="text-green-600">Langraph</strong> and <strong class="text-blue-600">Django</strong>. I'm passionate about creating performant, accessible, and user-friendly applications that solve real-world problems.
 					</p>
-					<p class="animate-fade-in-left animation-delay-400">
+					<p class="sr-reveal" style="--sr-delay:240ms">
 						When I’m not engineering systems, I’m exploring emerging technologies, refining my AI/robotics stack, and contributing to projects that push the boundaries of automation and intelligent systems.
 					</p>
 				</div>
 
 				<!-- Stats -->
 				<div class="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-					<div class="text-center animate-counter" data-target="150">
+					<div class="text-center sr-card" style="--sr-delay:0ms" data-target="150">
 						<div class="text-3xl font-bold text-blue-600 counter">0</div>
 						<div class="text-sm text-gray-600 dark:text-gray-400 mt-2">Projects Completed</div>
 					</div>
-					<div class="text-center animate-counter" data-target="50">
+					<div class="text-center sr-card" style="--sr-delay:120ms" data-target="50">
 						<div class="text-3xl font-bold text-green-600 counter">0</div>
 						<div class="text-sm text-gray-600 dark:text-gray-400 mt-2">Happy Clients</div>
 					</div>
-					<div class="text-center animate-counter" data-target="5">
+					<div class="text-center sr-card" style="--sr-delay:240ms" data-target="5">
 						<div class="text-3xl font-bold text-purple-600 counter">0</div>
 						<div class="text-sm text-gray-600 dark:text-gray-400 mt-2">Years Experience</div>
 					</div>
@@ -49,59 +49,54 @@
 
 				<!-- Skills Progress Bars -->
 <div class="space-y-6">
-    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Core Competencies</h3>
-    
-    <div class="space-y-4">
-        <div class="skill-item" data-skill="95">
-            <div class="flex justify-between mb-2">
-                <span class="text-gray-700 dark:text-gray-300 font-medium">Python / AI & ML</span>
-                <span class="text-gray-500 dark:text-gray-400 skill-percentage">95%</span>
-            </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-            </div>
-        </div>
-
-        <div class="skill-item" data-skill="92">
-            <div class="flex justify-between mb-2">
-                <span class="text-gray-700 dark:text-gray-300 font-medium">ROS2 / Robotics & SLAM</span>
-                <span class="text-gray-500 dark:text-gray-400 skill-percentage">92%</span>
-            </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div class="bg-gradient-to-r from-blue-400 to-purple-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-            </div>
-        </div>
-
-        <div class="skill-item" data-skill="90">
-            <div class="flex justify-between mb-2">
-                <span class="text-gray-700 dark:text-gray-300 font-medium">Django / FastAPI (Full-Stack)</span>
-                <span class="text-gray-500 dark:text-gray-400 skill-percentage">90%</span>
-            </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div class="bg-gradient-to-r from-green-400 to-teal-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-            </div>
-        </div>
-
-        <div class="skill-item" data-skill="88">
-            <div class="flex justify-between mb-2">
-                <span class="text-gray-700 dark:text-gray-300 font-medium">Computer Vision (YOLO, OpenCV)</span>
-                <span class="text-gray-500 dark:text-gray-400 skill-percentage">88%</span>
-            </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div class="bg-gradient-to-r from-pink-400 to-red-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-            </div>
-        </div>
-
-        <div class="skill-item" data-skill="85">
-            <div class="flex justify-between mb-2">
-                <span class="text-gray-700 dark:text-gray-300 font-medium">Database Design & Cloud (MySQL, PostgreSQL, AWS)</span>
-                <span class="text-gray-500 dark:text-gray-400 skill-percentage">85%</span>
-            </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div class="bg-gradient-to-r from-indigo-400 to-blue-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-            </div>
-        </div>
-    </div>
+	<h3 class="text-xl font-semibold text-gray-900 dark:text-white">Core Competencies</h3>
+	<div class="space-y-4">
+		<div class="skill-item sr-card" style="--sr-delay:0ms" data-skill="95">
+			<div class="flex justify-between mb-2">
+				<span class="text-gray-700 dark:text-gray-300 font-medium">Python / AI & ML</span>
+				<span class="text-gray-500 dark:text-gray-400 skill-percentage">95%</span>
+			</div>
+			<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+				<div class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
+			</div>
+		</div>
+		<div class="skill-item sr-card" style="--sr-delay:80ms" data-skill="92">
+			<div class="flex justify-between mb-2">
+				<span class="text-gray-700 dark:text-gray-300 font-medium">ROS2 / Robotics & SLAM</span>
+				<span class="text-gray-500 dark:text-gray-400 skill-percentage">92%</span>
+			</div>
+			<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+				<div class="bg-gradient-to-r from-blue-400 to-purple-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
+			</div>
+		</div>
+		<div class="skill-item sr-card" style="--sr-delay:160ms" data-skill="90">
+			<div class="flex justify-between mb-2">
+				<span class="text-gray-700 dark:text-gray-300 font-medium">Django / FastAPI (Full-Stack)</span>
+				<span class="text-gray-500 dark:text-gray-400 skill-percentage">90%</span>
+			</div>
+			<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+				<div class="bg-gradient-to-r from-green-400 to-teal-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
+			</div>
+		</div>
+		<div class="skill-item sr-card" style="--sr-delay:240ms" data-skill="88">
+			<div class="flex justify-between mb-2">
+				<span class="text-gray-700 dark:text-gray-300 font-medium">Computer Vision (YOLO, OpenCV)</span>
+				<span class="text-gray-500 dark:text-gray-400 skill-percentage">88%</span>
+			</div>
+			<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+				<div class="bg-gradient-to-r from-pink-400 to-red-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
+			</div>
+		</div>
+		<div class="skill-item sr-card" style="--sr-delay:320ms" data-skill="85">
+			<div class="flex justify-between mb-2">
+				<span class="text-gray-700 dark:text-gray-300 font-medium">Database Design & Cloud (MySQL, PostgreSQL, AWS)</span>
+				<span class="text-gray-500 dark:text-gray-400 skill-percentage">85%</span>
+			</div>
+			<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+				<div class="bg-gradient-to-r from-indigo-400 to-blue-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
+			</div>
+		</div>
+	</div>
 </div>
 
 			</div>
@@ -148,103 +143,141 @@
 </section>
 
 <style>
-	@keyframes fade-in-left {
-		from {
-			opacity: 0;
-			transform: translateX(-30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-	
 	@keyframes float-gentle {
 		0%, 100% { transform: translateY(0px); }
 		50% { transform: translateY(-10px); }
 	}
-	
-	.animate-fade-in-left {
-		animation: fade-in-left 0.8s ease-out;
-	}
-	
 	.floating-element {
 		animation: float-gentle 3s ease-in-out infinite;
 	}
-	
-	.animation-delay-200 { animation-delay: 0.2s; }
-	.animation-delay-400 { animation-delay: 0.4s; }
-	.animation-delay-1000 { animation-delay: 1s; }
-	.animation-delay-2000 { animation-delay: 2s; }
-	
 	.skill-bar {
 		transition: width 2s ease-in-out;
+	}
+	/* Scroll-reveal Netflix-style fade/zoom utility classes */
+	.sr-reveal {
+		opacity: 0;
+		transform: translateY(40px) scale(0.96);
+		transition:
+			opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+			transform 0.7s cubic-bezier(0.4,0,0.2,1);
+		transition-delay: var(--sr-delay,0ms);
+		will-change: opacity, transform;
+	}
+	.sr-reveal.sr-visible {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	.sr-card {
+		opacity: 0;
+		transform: translateY(40px) scale(0.96);
+		transition:
+			opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+			transform 0.7s cubic-bezier(0.4,0,0.2,1);
+		transition-delay: var(--sr-delay,0ms);
+		will-change: opacity, transform;
+	}
+	.sr-card.sr-visible {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	.sr-zoom {
+		opacity: 0;
+		transform: scale(0.98);
+		transition:
+			opacity 0.9s cubic-bezier(0.4,0,0.2,1),
+			transform 0.9s cubic-bezier(0.4,0,0.2,1);
+		will-change: opacity, transform;
+	}
+	.sr-zoom.sr-visible {
+		opacity: 1;
+		transform: scale(1);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.sr-reveal, .sr-card, .sr-zoom {
+			transition: none !important;
+		}
 	}
 </style>
 
 <script>
-	// Counter animation
-	function animateCounters() {
-		const counters = document.querySelectorAll('.animate-counter');
-		
-		const observerOptions = {
-			threshold: 0.7
-		};
-		
+// Scroll-reveal Netflix-style animation engine
+function scrollRevealInit() {
+	const revealEls = document.querySelectorAll('.sr-reveal, .sr-card, .sr-zoom');
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (prefersReducedMotion) {
+		revealEls.forEach(el => el.classList.add('sr-visible'));
+		return;
+	}
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('sr-visible');
+			} else {
+				entry.target.classList.remove('sr-visible');
+			}
+		});
+	}, { threshold: 0.3 });
+	revealEls.forEach(el => observer.observe(el));
+}
+
+// Counter animation (only when visible)
+function animateCounters() {
+	const counters = document.querySelectorAll('.sr-card .counter');
+	counters.forEach(counterEl => {
+		let started = false;
+		const parent = counterEl.closest('.sr-card');
+		const target = parseInt(parent.dataset.target);
+		const increment = target / 50;
+		let current = 0;
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const counter = entry.target.querySelector('.counter');
-					const target = parseInt(entry.target.dataset.target);
-					const increment = target / 50;
-					let current = 0;
-					
+				if (entry.isIntersecting && !started) {
+					started = true;
 					const timer = setInterval(() => {
 						current += increment;
 						if (current >= target) {
 							current = target;
 							clearInterval(timer);
 						}
-						counter.textContent = Math.floor(current) + (target > 99 ? '+' : '');
+						counterEl.textContent = Math.floor(current) + (target > 99 ? '+' : '');
 					}, 40);
-					
-					observer.unobserve(entry.target);
+				}
+				if (!entry.isIntersecting && started) {
+					// Optionally reset counter if you want reverse animation
 				}
 			});
-		}, observerOptions);
-		
-		counters.forEach(counter => observer.observe(counter));
-	}
-	
-	// Skill bars animation
-	function animateSkillBars() {
-		const skillItems = document.querySelectorAll('.skill-item');
-		
-		const observerOptions = {
-			threshold: 0.5
-		};
-		
+		}, { threshold: 0.7 });
+		observer.observe(parent);
+	});
+}
+
+// Skill bars animation (only when visible)
+function animateSkillBars() {
+	const skillItems = document.querySelectorAll('.skill-item');
+	skillItems.forEach(item => {
+		let animated = false;
+		const skillBar = item.querySelector('.skill-bar');
+		const skillPercentage = item.dataset.skill;
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const skillBar = entry.target.querySelector('.skill-bar');
-					const skillPercentage = entry.target.dataset.skill;
-					
+				if (entry.isIntersecting && !animated) {
+					animated = true;
 					setTimeout(() => {
 						skillBar.style.width = skillPercentage + '%';
 					}, 200);
-					
-					observer.unobserve(entry.target);
+				}
+				if (!entry.isIntersecting && animated) {
+					// Optionally reset bar if you want reverse animation
 				}
 			});
-		}, observerOptions);
-		
-		skillItems.forEach(item => observer.observe(item));
-	}
-	
-	// Initialize animations when DOM is loaded
-	document.addEventListener('DOMContentLoaded', () => {
-		animateCounters();
-		animateSkillBars();
+		}, { threshold: 0.5 });
+		observer.observe(item);
 	});
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	scrollRevealInit();
+	animateCounters();
+	animateSkillBars();
+});
 </script>
