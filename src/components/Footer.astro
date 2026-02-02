@@ -37,18 +37,20 @@
 				<!-- Newsletter Signup -->
 				<div class="max-w-md">
 					<h4 class="text-lg font-semibold mb-4">Stay Updated</h4>
-					<div class="flex">
+					<form id="newsletter-form" action="https://formspree.io/f/xbdkabbd" method="POST" class="flex">
 						<input 
 							type="email" 
+							name="email"
 							placeholder="Enter your email"
 							class="flex-1 px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+							required
 						>
-						<button class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-pink-600 rounded-r-lg transition-all duration-300 transform hover:scale-105">
+						<button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-pink-600 rounded-r-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
 							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 								<path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
 							</svg>
 						</button>
-					</div>
+					</form>
 				</div>
 			</div>
 
@@ -284,11 +286,11 @@
 	
 	// Newsletter signup functionality
 	function initializeNewsletter() {
-		const newsletterForm = document.querySelector('footer .flex');
+		const newsletterForm = document.getElementById('newsletter-form');
 		const emailInput = newsletterForm.querySelector('input[type="email"]');
 		const submitBtn = newsletterForm.querySelector('button');
 		
-		submitBtn.addEventListener('click', (e) => {
+		newsletterForm.addEventListener('submit', async (e) => {
 			e.preventDefault();
 			
 			const email = emailInput.value.trim();
@@ -302,16 +304,34 @@
 				return;
 			}
 			
-			// Simulate newsletter signup
+			// Show loading state
+			const originalContent = submitBtn.innerHTML;
 			submitBtn.innerHTML = '<div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>';
 			submitBtn.disabled = true;
 			
-			setTimeout(() => {
-				showNotification('Thank you for subscribing to our newsletter!', 'success');
-				emailInput.value = '';
-				submitBtn.innerHTML = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+			try {
+				const formData = new FormData(newsletterForm);
+				const response = await fetch(newsletterForm.action, {
+					method: newsletterForm.method || 'POST',
+					body: formData,
+					headers: { 'Accept': 'application/json' }
+				});
+				
+				if (response.ok) {
+					showNotification('Thank you for subscribing to our newsletter!', 'success');
+					emailInput.value = '';
+				} else {
+					const data = await response.json().catch(() => ({}));
+					const msg = data?.errors?.length ? data.errors.map(e => e.message).join('; ') : 'Subscription failed. Please try again later.';
+					showNotification(msg, 'error');
+				}
+			} catch (error) {
+				showNotification('Network error. Please try again later.', 'error');
+			} finally {
+				// Reset button state
+				submitBtn.innerHTML = originalContent;
 				submitBtn.disabled = false;
-			}, 2000);
+			}
 		});
 	}
 	
