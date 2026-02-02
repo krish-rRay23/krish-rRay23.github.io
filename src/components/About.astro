@@ -328,7 +328,7 @@ function animateCounters() {
 							current = target;
 							clearInterval(timer);
 						}
-						counterEl.textContent = Math.floor(current) + (target > 99 ? '+' : '');
+						counterEl.textContent = Math.floor(current) + '+';
 					}, 40);
 				}
 				if (!entry.isIntersecting && started) {
