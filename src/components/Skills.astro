@@ -1,5 +1,22 @@
-<section id="skills" class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="skills" class="relative py-20 overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300 sr-zoom">
+	<!-- Clean gradient overlay for depth -->
+	<div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-white dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900"></div>
+
+	<!-- Subtle animated grid background -->
+	<div class="absolute inset-0 opacity-10 dark:opacity-20">
+		<div class="absolute inset-0 bg-grid-pattern animate-grid-move"></div>
+	</div>
+
+	<!-- Floating glass morphism elements -->
+	<div class="absolute inset-0 overflow-hidden pointer-events-none">
+		<div class="glass-morph-clean absolute top-20 left-10 w-32 h-32 rounded-3xl animate-float-1"></div>
+		<div class="glass-morph-clean absolute top-40 right-20 w-24 h-24 rounded-full animate-float-2"></div>
+		<div class="glass-morph-clean absolute bottom-32 left-1/4 w-20 h-20 rounded-2xl animate-float-3"></div>
+		<div class="glass-morph-clean absolute top-1/3 right-1/3 w-28 h-28 rounded-full animate-float-1"></div>
+		<div class="glass-morph-gradient absolute bottom-20 right-10 w-40 h-40 rounded-3xl animate-float-2"></div>
+	</div>
+
+	<div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-16">
 			<h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
 				My 
@@ -23,8 +40,8 @@
 							<path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
 						</svg>
 					</div>
-					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Robotics & Perception</h3>
-					<p class="text-gray-600 dark:text-gray-400 text-sm">ROS2, SLAM, Navigation, and Computer Vision</p>
+					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Programming Languages</h3>
+					<p class="text-gray-600 dark:text-gray-400 text-sm">Python, C/C++, Java, SQL, MATLAB, JavaScript, HTML, CSS</p>
 				</div>
 			</div>
 
@@ -35,8 +52,8 @@
 							<path d="M4.5 12.75l6 6 9-13.5"/>
 						</svg>
 					</div>
-					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">AI & Agents</h3>
-					<p class="text-gray-600 dark:text-gray-400 text-sm">YOLOv8, Transformers, LangGraph, CrewAI</p>
+					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">AI & Robotics</h3>
+					<p class="text-gray-600 dark:text-gray-400 text-sm">ML, DL, Computer Vision, ROS2, YOLOv11, SLAM</p>
 				</div>
 			</div>
 
@@ -47,8 +64,8 @@
 							<path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4zM4 9v3c0 2.21 3.58 4 8 4s8-1.79 8-4V9c0 2.21-3.58 4-8 4s-8-1.79-8-4zM4 16v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c0 2.21-3.58 4-8 4s-8-1.79-8-4z"/>
 						</svg>
 					</div>
-					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Web & APIs</h3>
-					<p class="text-gray-600 dark:text-gray-400 text-sm">Django, FastAPI, React, Next.js, Astro</p>
+					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Frameworks & Tools</h3>
+					<p class="text-gray-600 dark:text-gray-400 text-sm">Django, FastAPI, React, Docker, Kubernetes</p>
 				</div>
 			</div>
 
@@ -59,8 +76,71 @@
 							<path d="M12 2l3.09 6.26L22 9l-5 4.87 1.18 6.88L12 17.77l-6.18 2.98L7 14.87 2 10l6.91-1.74L12 2z"/>
 						</svg>
 					</div>
-					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Data, Cloud & Tools</h3>
-					<p class="text-gray-600 dark:text-gray-400 text-sm">PostgreSQL/MySQL, AWS, Git/Linux, CI/CD</p>
+					<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Core Technologies</h3>
+					<p class="text-gray-600 dark:text-gray-400 text-sm">DSA, OOP, OS, Networks, Edge AI, TinyML</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Soft Skills Section -->
+		<div class="mt-20">
+			<div class="text-center mb-12">
+				<h3 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+					Soft 
+					<span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+						Skills
+					</span>
+				</h3>
+				<div class="w-20 h-1 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mx-auto"></div>
+			</div>
+
+			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+				<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+					<div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-2xl">🧩</span>
+					</div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Problem Solving</h4>
+					<p class="text-sm text-gray-600 dark:text-gray-400">Analytical thinking & solution design</p>
+				</div>
+
+				<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+					<div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-2xl">🎯</span>
+					</div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Critical Thinking</h4>
+					<p class="text-sm text-gray-600 dark:text-gray-400">Logical analysis & decision making</p>
+				</div>
+
+				<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+					<div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-2xl">💡</span>
+					</div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Design Thinking</h4>
+					<p class="text-sm text-gray-600 dark:text-gray-400">User-centered innovation</p>
+				</div>
+
+				<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+					<div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-2xl">👑</span>
+					</div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Leadership</h4>
+					<p class="text-sm text-gray-600 dark:text-gray-400">Team guidance & mentorship</p>
+				</div>
+
+				<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+					<div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-2xl">💬</span>
+					</div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Communication</h4>
+					<p class="text-sm text-gray-600 dark:text-gray-400">Clear expression & collaboration</p>
+				</div>
+
+				<div class="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+					<div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+						<span class="text-2xl">🤝</span>
+					</div>
+					<h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Teamwork</h4>
+					<p class="text-sm text-gray-600 dark:text-gray-400">Collaborative problem solving</p>
 				</div>
 			</div>
 		</div>
@@ -68,27 +148,47 @@
 </section>
 
 <script type="module">
-	// Updated skills data for Krish Ray
+	// Updated comprehensive skills data for Krish Ray
 	const skillsData = {
-		robotics: [
-			{ name: 'ROS2 / TF2', level: 92, color: 'from-blue-500 to-cyan-600', icon: '🤖' },
-			{ name: 'SLAM / Nav2 / AMCL', level: 88, color: 'from-sky-500 to-indigo-600', icon: '🗺️' },
-			{ name: 'Computer Vision (YOLOv8, OpenCV)', level: 90, color: 'from-teal-500 to-emerald-600', icon: '👁️' }
+		programming: [
+			{ name: 'Python', level: 95, color: 'from-blue-500 to-cyan-600', icon: '🐍' },
+			{ name: 'C/C++', level: 88, color: 'from-blue-600 to-indigo-700', icon: '⚡' },
+			{ name: 'Java', level: 85, color: 'from-orange-500 to-red-600', icon: '☕' },
+			{ name: 'SQL', level: 90, color: 'from-blue-400 to-blue-600', icon: '🗄️' },
+			{ name: 'MATLAB', level: 82, color: 'from-orange-400 to-red-500', icon: '📊' },
+			{ name: 'JavaScript', level: 88, color: 'from-yellow-400 to-orange-500', icon: '🟨' },
+			{ name: 'HTML/CSS', level: 92, color: 'from-red-400 to-pink-500', icon: '🌐' }
 		],
-		ai: [
-			{ name: 'Transformers (LLaMA 3)', level: 85, color: 'from-fuchsia-500 to-pink-600', icon: '🧠' },
-			{ name: 'LangGraph / CrewAI / Autogen', level: 88, color: 'from-purple-500 to-violet-600', icon: '🕸️' },
-			{ name: 'NumPy / Pandas / Matplotlib', level: 90, color: 'from-emerald-500 to-teal-600', icon: '📊' }
+		aiRobotics: [
+			{ name: 'Artificial Intelligence', level: 90, color: 'from-purple-500 to-pink-600', icon: '🧠' },
+			{ name: 'Machine Learning', level: 88, color: 'from-green-500 to-teal-600', icon: '🤖' },
+			{ name: 'Deep Learning', level: 85, color: 'from-indigo-500 to-purple-600', icon: '🧮' },
+			{ name: 'Computer Vision', level: 92, color: 'from-cyan-500 to-blue-600', icon: '👁️' },
+			{ name: 'Robotics & Autonomous Systems', level: 90, color: 'from-gray-600 to-gray-800', icon: '🚀' },
+			{ name: 'Edge AI & TinyML', level: 87, color: 'from-emerald-500 to-green-600', icon: '⚡' },
+			{ name: 'CNNs & Transformers', level: 88, color: 'from-violet-500 to-purple-600', icon: '🔄' },
+			{ name: 'LLMs & YOLOv11', level: 85, color: 'from-fuchsia-500 to-pink-600', icon: '🎯' },
+			{ name: 'SLAM & ROS2', level: 92, color: 'from-blue-500 to-indigo-600', icon: '🗺️' }
 		],
-		web: [
-			{ name: 'Django / DRF', level: 90, color: 'from-emerald-500 to-green-600', icon: '🧱' },
-			{ name: 'FastAPI / Pydantic', level: 88, color: 'from-lime-500 to-emerald-600', icon: '⚡' },
-			{ name: 'React / Next.js / Astro', level: 86, color: 'from-blue-500 to-indigo-700', icon: '🖥️' }
+		frameworks: [
+			{ name: 'Django & DRF', level: 90, color: 'from-green-500 to-emerald-600', icon: '🧱' },
+			{ name: 'FastAPI', level: 88, color: 'from-teal-500 to-cyan-600', icon: '⚡' },
+			{ name: 'React & Next.js', level: 86, color: 'from-blue-500 to-indigo-700', icon: '⚛️' },
+			{ name: 'OpenCV & NumPy', level: 92, color: 'from-red-500 to-pink-600', icon: '📷' },
+			{ name: 'Pandas & PostgreSQL', level: 88, color: 'from-blue-400 to-cyan-500', icon: '📊' },
+			{ name: 'MySQL & Git/Linux', level: 90, color: 'from-orange-500 to-red-600', icon: '🐧' },
+			{ name: 'Docker & Kubernetes', level: 85, color: 'from-blue-600 to-indigo-700', icon: '🐳' },
+			{ name: 'Selenium & BeautifulSoup', level: 82, color: 'from-green-400 to-emerald-500', icon: '🕷️' }
 		],
-		dataCloud: [
-			{ name: 'PostgreSQL / MySQL / SQLite', level: 85, color: 'from-blue-500 to-sky-600', icon: '🗄️' },
-			{ name: 'AWS Basics / Deployments', level: 78, color: 'from-yellow-500 to-orange-600', icon: '☁️' },
-			{ name: 'Git / Linux / CI/CD', level: 95, color: 'from-slate-500 to-gray-700', icon: '🛠️' }
+		coreTech: [
+			{ name: 'Data Structures & Algorithms', level: 92, color: 'from-purple-500 to-indigo-600', icon: '🏗️' },
+			{ name: 'Object-Oriented Programming', level: 95, color: 'from-blue-500 to-cyan-600', icon: '🔧' },
+			{ name: 'Database Systems', level: 88, color: 'from-green-500 to-teal-600', icon: '💾' },
+			{ name: 'Operating Systems', level: 85, color: 'from-gray-500 to-gray-700', icon: '💻' },
+			{ name: 'Computer Networks', level: 82, color: 'from-indigo-500 to-purple-600', icon: '🌐' },
+			{ name: 'Edge Accelerators & Model Optimization', level: 87, color: 'from-orange-500 to-red-600', icon: '🚀' },
+			{ name: 'Federated Learning', level: 80, color: 'from-pink-500 to-rose-600', icon: '🔗' },
+			{ name: 'AI Agent Deployment', level: 85, color: 'from-violet-500 to-purple-600', icon: '🤖' }
 		]
 	};
 
@@ -97,11 +197,11 @@
 		if (!container) return;
 
 		const tabsHtml = `
-			<div class="flex flex-wrap justify-center mb-8 bg-white dark:bg-gray-900 rounded-full p-2 shadow-lg max-w-3xl mx-auto">
-				<button class="skill-tab active px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="robotics">Robotics</button>
-				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="ai">AI & Agents</button>
-				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="web">Web & APIs</button>
-				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="dataCloud">Data & Cloud</button>
+			<div class="flex flex-wrap justify-center mb-8 bg-white dark:bg-gray-900 rounded-full p-2 shadow-lg max-w-4xl mx-auto">
+				<button class="skill-tab active px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="programming">Programming Languages</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="aiRobotics">AI & Robotics</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="frameworks">Frameworks & Tools</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="coreTech">Core Technologies</button>
 			</div>
 			<div id="skills-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 		`;
@@ -117,7 +217,7 @@
 			});
 		});
 
-		switchSkillCategory('robotics');
+		switchSkillCategory('programming');
 	}
 
 	function switchSkillCategory(category) {
@@ -176,5 +276,77 @@
 	}
 	#skills-content {
 		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	/* Background grid animation */
+	.bg-grid-pattern {
+		background-image: 
+			linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+		background-size: 50px 50px;
+	}
+
+	.animate-grid-move {
+		animation: gridMove 20s linear infinite;
+	}
+
+	@keyframes gridMove {
+		0% { transform: translate(0, 0); }
+		100% { transform: translate(50px, 50px); }
+	}
+
+	/* Glass morphism effects - Clean Theme */
+	.glass-morph-clean {
+		background: rgba(59, 130, 246, 0.1);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(59, 130, 246, 0.2);
+		box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+	}
+
+	.glass-morph-gradient {
+		background: rgba(147, 51, 234, 0.1);
+		backdrop-filter: blur(15px);
+		border: 1px solid rgba(147, 51, 234, 0.2);
+		box-shadow: 0 12px 40px rgba(147, 51, 234, 0.15);
+	}
+
+	/* Dark mode adjustments */
+	.dark .glass-morph-clean {
+		background: rgba(59, 130, 246, 0.05);
+		border: 1px solid rgba(59, 130, 246, 0.15);
+	}
+
+	.dark .glass-morph-gradient {
+		background: rgba(147, 51, 234, 0.05);
+		border: 1px solid rgba(147, 51, 234, 0.15);
+	}
+
+	/* Floating animations */
+	.animate-float-1 {
+		animation: float1 6s ease-in-out infinite;
+	}
+
+	.animate-float-2 {
+		animation: float2 8s ease-in-out infinite;
+	}
+
+	.animate-float-3 {
+		animation: float3 10s ease-in-out infinite;
+	}
+
+	@keyframes float1 {
+		0%, 100% { transform: translateY(0px) rotate(0deg); }
+		50% { transform: translateY(-30px) rotate(180deg); }
+	}
+
+	@keyframes float2 {
+		0%, 100% { transform: translateX(0px) translateY(0px); }
+		33% { transform: translateX(20px) translateY(-20px); }
+		66% { transform: translateX(-20px) translateY(-10px); }
+	}
+
+	@keyframes float3 {
+		0%, 100% { transform: scale(1) rotate(0deg); }
+		50% { transform: scale(1.1) rotate(90deg); }
 	}
 </style>
