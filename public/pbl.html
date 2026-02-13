@@ -1,264 +1,787 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bharat Health Pass (BHP) | PBL 2026</title>
+    <title>Bharat Health Pass (BHP) | Advanced Healthcare Orchestration</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --background: #020617;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --border: rgba(255, 255, 255, 0.1);
+        }
 
         body {
-            background-color: #020617;
+            background-color: var(--background);
             color: #f8fafc;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-hover:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+            transform: translateY(-4px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #60a5fa, #a855f7);
+            background: linear-gradient(135deg, #60a5fa, #a855f7, #2dd4bf);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientMove 8s ease infinite;
         }
 
-        /* TIMER UI - FIXED CONTRAST */
-        #timerContainer {
-            background: #ffffff;
-            color: #020617;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            border: 3px solid #3b82f6;
-            z-index: 1000;
-        }
-
-        @keyframes flicker {
-
-            0%,
-            100% {
-                background-color: #ffffff;
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
             }
 
             50% {
-                background-color: #fca5a5;
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
             }
         }
 
-        .timer-warning {
-            animation: flicker 1s infinite;
-            border: 3px solid #ef4444 !important;
-            color: #b91c1c !important;
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.4;
         }
 
-        .timer-stop {
-            background-color: #991b1b !important;
-            color: #ffffff !important;
-            border: 3px solid #f87171 !important;
-            animation: none;
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+
+        /* Timer Styles */
+        #timerContainer {
+            background: #ffffff;
+            color: #020617;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #3b82f6;
+            z-index: 1000;
+        }
+
+        .timer-warning {
+            animation: pulse-red 1s infinite alternate;
+            border-color: #ef4444 !important;
+            color: #ef4444 !important;
+        }
+
+        @keyframes pulse-red {
+            from {
+                box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+            }
+
+            to {
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+            }
+        }
+
+        .matrix-cell {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+
+        .matrix-cell:hover {
+            background: rgba(255, 255, 255, 0.03);
         }
     </style>
 </head>
 
 <body onload="startTimer()">
+    <canvas id="three-canvas"></canvas>
 
-    <div id="timerContainer"
-        class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
-        <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
-        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
-    </div>
-
-    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-white/5 px-6 py-4 flex justify-between items-center">
         <div class="flex items-center gap-4">
-            <div class="bg-white p-1 rounded flex items-center justify-center shadow-md"
-                style="height: 48px; width: 48px;">
+            <div class="bg-white p-1 rounded-lg flex items-center justify-center shadow-lg w-10 h-10">
                 <img src="mujlogo.jpg" alt="MUJ" class="h-full w-auto object-contain"
-                    onerror="this.src='https://via.placeholder.com/50?text=MUJ'">
+                    onerror="this.src='https://via.placeholder.com/50?text=M'">
             </div>
-            <div class="flex flex-col text-left">
-                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span
+            <div class="flex flex-col">
+                <span class="text-lg font-extrabold text-white leading-none uppercase tracking-tight">BHP <span
                         class="text-blue-500 italic">2026</span></span>
-                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer
-                    Science & Engineering</span>
+                <span class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em]">Health Orchestration</span>
             </div>
         </div>
-        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
-            <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
-            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
-            <a href="#results" class="hover:text-blue-400 transition">Results</a>
-            <a href="#team" class="hover:text-blue-400 transition">Team</a>
+        <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
+            <a href="#summary" class="nav-link">Summary</a>
+            <a href="#architecture" class="nav-link">Architecture</a>
+            <a href="#workflow" class="nav-link">Workflow</a>
+            <a href="#fallbacks" class="nav-link">Fallbacks</a>
+            <a href="#technical" class="nav-link">Technical</a>
+            <a href="#automation" class="nav-link">Automation</a>
+            <a href="#roadmap" class="nav-link">Roadmap</a>
+        </div>
+        <div id="timerContainer"
+            class="px-4 py-2 rounded-xl flex items-center gap-3 font-mono text-sm font-bold shadow-2xl">
+            <i class="fas fa-hourglass-start" id="timerIcon"></i>
+            <span id="displayTime">00:00</span>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
-
-        <section class="text-center">
+    <main class="relative z-10 max-w-7xl mx-auto px-6 space-y-32 pb-40">
+        <!-- Hero Section -->
+        <section id="summary" class="pt-48 text-center section-reveal">
             <div
-                class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">
-                ID: 23FE10CSE00318</div>
-            <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight"><span
-                    class="gradient-text uppercase">Bharat Health Pass (BHP)</span></h1>
-            <p class="text-slate-200 text-xl font-bold mb-4">A Fallback-Driven QR-Based Healthcare Orchestration System
-                for Zero-Queue Treatment and Deferred Settlement</p>
-            <p
-                class="text-slate-400 max-w-4xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
-                "Project Statement: Healthcare access is slowed by manual identity checks, insurance verification, and
-                payment processing at hospital reception desks. Existing systems require upfront verification and
-                payment, leading to long queues, treatment delays, and administrative overhead. There is no unified
-                system that enables instant treatment authorization while handling verification and settlement
-                asynchronously."
+                class="inline-block px-4 py-1.5 glass rounded-full text-blue-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-8 border-blue-500/20">
+                Project ID: 23FE10CSE00318
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-10 leading-none">
+                <span class="gradient-text uppercase">Bharat Health Pass</span>
+            </h1>
+            <p class="text-slate-300 text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-12 leading-relaxed">
+                A Fallback-First Health Access System for Zero-Queue Treatment and Asynchronous Settlement.
             </p>
-        </section>
-
-        <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
-            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
-                <h2 class="text-3xl font-extrabold mb-6">Research Gap / Innovation</h2>
-                <p class="text-slate-400 leading-relaxed text-justify">Existing solutions focus on <b>digitization, not
-                        coordination</b>. This project introduces a fallback-first orchestration layer where:
-                <ul class="list-disc ml-5 mt-4 space-y-2 text-sm">
-                    <li>Treatment is authorized before verification completes.</li>
-                    <li>QR acts as a trigger, not a data container.</li>
-                    <li>Insurance and settlement are automated post-treatment.</li>
-                    <li>System works even without insurer or government APIs.</li>
-                </ul>
-                </p>
+            <div class="flex flex-wrap justify-center gap-6 mb-24">
+                <a href="#workflow"
+                    class="px-8 py-3 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition-all shadow-lg shadow-blue-500/30">EXPLORE
+                    WORKFLOW</a>
+                <a href="https://github.com/krish-rRay23/BharatHealthPass" target="_blank"
+                    class="px-8 py-3 glass rounded-full font-bold hover:bg-white/10 transition-all border-white/20">VIEW
+                    SOURCE CODE</a>
             </div>
-            <div class="space-y-6">
-                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
-                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-2">Literature Review /
-                        Market Research</h3>
-                    <ul class="text-[11px] text-slate-400 space-y-1">
-                        <li><b>ABHA / ABDM:</b> Health IDs but lacks workflow automation.</li>
-                        <li><b>Cashless Systems:</b> Slow authorization, hospital-specific.</li>
-                        <li><b>HIS:</b> Manual verification still required.</li>
-                        <li><b>UPI:</b> Payments only, no claims handling.</li>
-                    </ul>
-                </div>
-                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
-                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-2">The Critical Gap</h3>
-                    <ul class="text-[11px] text-slate-400 space-y-2 italic">
-                        <li>• No system automates the entire lifecycle from access to settlement.</li>
-                        <li>• Manual reception checks create critical delays in emergency care.</li>
-                        <li>• Mandatory pre-payment prevents immediate life-saving treatment.</li>
-                        <li>• Systems fail when government or insurance portals are offline.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
-        <section id="methodology" class="space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span
-                    class="text-blue-500">Methodology</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-3xl text-center">
-                    <i class="fas fa-database text-blue-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Dataset / Input</h3>
-                    <p class="text-[10px] text-slate-500">User-uploaded docs (ID, insurance, invoices), QR metadata,
-                        simulated ABHA/insurer responses. Dynamic, real-time data.</p>
-                </div>
-                <div class="glass p-8 rounded-3xl text-center">
-                    <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-2 uppercase text-xs tracking-widest">Model / Architecture</h3>
-                    <p class="text-[10px] text-slate-500">Android app + FastAPI Backend. Agent-based design. Workflow:
-                        App → QR → Auth → Treatment → Claims → Settlement. OCR + Rule Engine.</p>
-                </div>
-                <div class="glass p-8 rounded-3xl text-center border-2 border-green-500/20 bg-green-500/5">
-                    <i class="fab fa-python text-green-500 text-3xl mb-4"></i>
-                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-green-400">Live Execution</h3>
-                    <a href="https://github.com/krish-rRay23" target="_blank"
-                        class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40">VIEW
-                        CODE / DEMO</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
-            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Results & <span
-                    class="text-blue-500">Analysis</span></h2>
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="h-80"><canvas id="resultsChart"></canvas></div>
-                <div class="space-y-4">
-                    <div class="p-4 rounded-xl bg-white/5 flex justify-between items-center border border-white/10">
-                        <span class="text-slate-400 font-bold uppercase text-[10px] tracking-widest">System
-                            Effectiveness</span>
-                        <span class="text-blue-400 font-mono font-black text-2xl">~88%</span>
+            <!-- Core Concept Cards -->
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="glass p-8 rounded-3xl glass-hover">
+                    <div
+                        class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-500">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
                     </div>
-                    <div class="p-4 rounded-xl bg-white/5 space-y-2 border border-white/10">
-                        <h4 class="text-xs font-bold text-white uppercase tracking-widest">Key Outcomes</h4>
-                        <ul class="text-[11px] text-slate-500 space-y-1">
-                            <li>• 0 minutes reception waiting time</li>
-                            <li>• No upfront payment required</li>
-                            <li>• &lt;10% manual intervention</li>
-                            <li>• API-independent operation</li>
+                    <h3 class="text-xl font-bold mb-4">Zero Delay</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Eliminate manual intake queues by issuing
+                        tokenized digital health cards. QR = Authorization to defer settlement.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl glass-hover">
+                    <div
+                        class="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 text-purple-500">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Privacy First</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">QR contains no PII. Backend orchestrates data via
+                        masked summaries and identity confidence scoring.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl glass-hover">
+                    <div
+                        class="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center mb-6 text-teal-500">
+                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Deterministic Fallback</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">System scales without external APIs by simulating
+                        human submission via RPA and custom template engines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Purpose & Design Decisions -->
+        <section class="grid lg:grid-cols-2 gap-12 section-reveal">
+            <div class="glass p-10 rounded-[3rem] border-l-4 border-blue-500">
+                <h2 class="text-3xl font-black mb-8">1 — High-Level Summary</h2>
+                <div class="space-y-6 text-slate-400 leading-relaxed text-sm">
+                    <p>BHPs core mission is to eliminate manual data entry and queue delays for hospital intake and
+                        billing by issuing a tokenized digital health access card (QR) from a single mobile app.</p>
+                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10 italic border-l-4 border-blue-400">
+                        "QR = authorization to defer settlement + pointer to evidence & liability."
+                    </div>
+                    <p>Everything else is automated: OCR → template mapping → RPA/API submission → tracking → settle /
+                        fallback.</p>
+                </div>
+            </div>
+            <div class="glass p-10 rounded-[3rem] border-l-4 border-purple-500">
+                <h2 class="text-3xl font-black mb-8">4 — Core Design Decisions</h2>
+                <div class="space-y-4">
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-xs uppercase mb-2">Single App (Two Modes)</h4>
+                        <p class="text-slate-500 text-[11px]">Strict device registration + RBAC. Simpler distribution,
+                            unified UX, less dev overhead.</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-xs uppercase mb-2">Deferred Settlement</h4>
+                        <p class="text-slate-500 text-[11px]">Platform authorizes treatment via exposure caps; backend
+                            handles verification later. Enables no-queue care.</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-xs uppercase mb-2">RPA + Email Fallbacks</h4>
+                        <p class="text-slate-500 text-[11px]">Simulates human submission when APIs are unavailable.
+                            Allows scale without privileged integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Diagram -->
+        <section id="architecture" class="section-reveal space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">2 — System <span
+                    class="text-blue-500">Architecture</span></h2>
+            <div class="glass p-12 rounded-[4rem] relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 pointer-events-none">
+                    <div
+                        class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500 via-transparent to-transparent">
+                    </div>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-4 gap-8 text-center items-start">
+                    <!-- Patient Device -->
+                    <div class="space-y-4">
+                        <div class="p-6 bg-blue-500/20 border border-blue-500/30 rounded-3xl">
+                            <i data-lucide="smartphone" class="w-10 h-10 mx-auto mb-4 text-blue-500"></i>
+                            <h4 class="font-bold text-xs">Patient App</h4>
+                            <p class="text-[10px] text-slate-500 mt-2">QR Generation, Doc Upload, OTC Dashboard</p>
+                        </div>
+                        <div class="text-blue-500"><i class="fas fa-arrow-down"></i></div>
+                        <div class="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                            <h4 class="font-bold text-[10px]">AUTH SERVICE</h4>
+                        </div>
+                    </div>
+                    <!-- Backend Core -->
+                    <div class="md:col-span-2 space-y-4">
+                        <div class="p-10 glass border-blue-500/40 rounded-[3rem]">
+                            <h4 class="text-xl font-bold mb-6 gradient-text uppercase italic">Central Backend Core</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
+                                    IDENTITY AGENT</div>
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
+                                    ELIGIBILITY AGENT</div>
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
+                                    CREDIT & RISK</div>
+                                <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
+                                    SETTLEMENT AGENT</div>
+                            </div>
+                            <div
+                                class="mt-6 p-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl text-[10px] font-bold uppercase tracking-widest">
+                                Claims Orchestrator
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hospital Device -->
+                    <div class="space-y-4">
+                        <div class="p-6 bg-emerald-500/20 border border-emerald-500/30 rounded-3xl">
+                            <i data-lucide="hospital" class="w-10 h-10 mx-auto mb-4 text-emerald-500"></i>
+                            <h4 class="font-bold text-xs">Hospital App</h4>
+                            <p class="text-[10px] text-slate-500 mt-2">QR Scanner, Treatment Records, Invoice Upload</p>
+                        </div>
+                        <div class="text-emerald-500"><i class="fas fa-arrow-down"></i></div>
+                        <div class="p-4 bg-white/5 border border-white/10 rounded-2xl">
+                            <h4 class="font-bold text-[10px]">SCAN SERVICE</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 grid md:grid-cols-3 gap-6">
+                    <div class="p-5 glass rounded-2xl border-blue-500/20 text-center">
+                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Identity Proof</h5>
+                        <p class="text-[10px] font-bold">Firebase OTP + Face Match</p>
+                    </div>
+                    <div class="p-5 glass rounded-2xl border-purple-500/20 text-center">
+                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Storage Layer</h5>
+                        <p class="text-[10px] font-bold">PostgreSQL + S3 (Minio)</p>
+                    </div>
+                    <div class="p-5 glass rounded-2xl border-emerald-500/20 text-center">
+                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Execution Layer</h5>
+                        <p class="text-[10px] font-bold">RPA (Puppeteer) + OCR Pipeline</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Workflow -->
+        <section id="workflow" class="section-reveal space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">3 — End-to-End <span
+                    class="text-blue-500">Workflow</span></h2>
+            <div class="space-y-8">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="w-full md:w-1/2 group">
+                        <div
+                            class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition group-hover:scale-105 border-l-8 border-blue-500">
+                            <span class="absolute top-8 right-8 text-8xl font-black text-white/5">01</span>
+                            <h4 class="text-2xl font-bold mb-4">Onboarding (Patient)</h4>
+                            <ul class="space-y-3 text-slate-400 text-sm">
+                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Phone + OTP
+                                    verification via Firebase.</li>
+                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Doc upload: ID,
+                                    Policy, Selfie for matching.</li>
+                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Backend issues
+                                    signed, time-bound QR token.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-px h-24 bg-gradient-to-b from-blue-500 to-emerald-500"></div>
+                    <div class="w-full md:w-1/2">
+                        <div
+                            class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition hover:scale-105 border-l-8 border-emerald-500">
+                            <span class="absolute top-8 right-8 text-8xl font-black text-white/5">02</span>
+                            <h4 class="text-2xl font-bold mb-4">Visit + Authorization</h4>
+                            <ul class="space-y-3 text-slate-400 text-sm">
+                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Hospital scans
+                                    QR → Real-time scan endpoint.</li>
+                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Identity & Risk
+                                    agents compute exposure cap.</li>
+                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Authorization
+                                    issued; Zero-Queue treatment starts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="w-full md:w-1/2 group">
+                        <div
+                            class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition group-hover:scale-105 border-l-8 border-purple-500">
+                            <span class="absolute top-8 right-8 text-8xl font-black text-white/5">03</span>
+                            <h4 class="text-2xl font-bold mb-4">Claims Automation</h4>
+                            <ul class="space-y-3 text-slate-400 text-sm">
+                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> Treatment
+                                    complete → Invoice OCR extraction.</li>
+                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> RPA Engine
+                                    submits to insurer portal/portal stubs.</li>
+                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> Automated
+                                    status tracking & human-in-loop handling.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-px h-24 bg-gradient-to-b from-purple-500 to-orange-500"></div>
+                    <div class="w-full md:w-1/2">
+                        <div
+                            class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition hover:scale-105 border-l-8 border-orange-500">
+                            <span class="absolute top-8 right-8 text-8xl font-black text-white/5">04</span>
+                            <h4 class="text-2xl font-bold mb-4">Settlement & Audit</h4>
+                            <ul class="space-y-3 text-slate-400 text-sm">
+                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Released
+                                    payment upon claim approval.</li>
+                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Signed event
+                                    logs & evidence bundle archival.</li>
+                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Fallback
+                                    recovery if claim rejected after timeout.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fallback Matrix & Resilience -->
+        <section id="fallbacks" class="section-reveal space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">5 — Fallback-First <span
+                    class="text-blue-500">Rules</span></h2>
+            <div class="glass overflow-hidden rounded-[3rem] border-white/5">
+                <div
+                    class="grid md:grid-cols-4 bg-white/5 text-[10px] font-black uppercase tracking-[0.2em] p-6 border-b border-white/10">
+                    <div>Component</div>
+                    <div>Primary Path</div>
+                    <div>Fallback 1</div>
+                    <div>Fallback 2</div>
+                </div>
+                <div class="divide-y divide-white/5">
+                    <div class="grid md:grid-cols-4 matrix-cell">
+                        <div class="text-blue-400 font-bold text-sm">ABHA Lookup</div>
+                        <div class="text-slate-400 text-xs">ABHA API</div>
+                        <div class="text-slate-500 text-xs">Local DB Stub</div>
+                        <div class="text-slate-500 text-xs italic">Self-declared Policy</div>
+                    </div>
+                    <div class="grid md:grid-cols-4 matrix-cell">
+                        <div class="text-blue-400 font-bold text-sm">Insurer Submit</div>
+                        <div class="text-slate-400 text-xs">Insurer API</div>
+                        <div class="text-slate-500 text-xs">RPA Portal</div>
+                        <div class="text-slate-500 text-xs italic">Structured Email</div>
+                    </div>
+                    <div class="grid md:grid-cols-4 matrix-cell">
+                        <div class="text-blue-400 font-bold text-sm">Payment</div>
+                        <div class="text-slate-400 text-xs">Payment Gateway</div>
+                        <div class="text-slate-500 text-xs">Manual Invoice</div>
+                        <div class="text-slate-500 text-xs italic">Deferred Payout</div>
+                    </div>
+                    <div class="grid md:grid-cols-4 matrix-cell">
+                        <div class="text-blue-400 font-bold text-sm">OCR</div>
+                        <div class="text-slate-400 text-xs">Auto-NER ML</div>
+                        <div class="text-slate-500 text-xs">Human-in-Loop</div>
+                        <div class="text-slate-500 text-xs italic">Manual Entry</div>
+                    </div>
+                </div>
+                <div class="p-8 bg-blue-500/5 text-center italic text-slate-500 text-xs">
+                    Principle: Always return deterministic eligibility_level and confidence scores.
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Deep Dive: Data & API -->
+        <section id="technical" class="section-reveal space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">Technical <span
+                    class="text-blue-500">Specifications</span></h2>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Data Model -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold flex items-center gap-3"><i data-lucide="database"
+                            class="text-blue-500"></i> 6 — Data Model</h3>
+                    <div class="glass p-8 rounded-3xl space-y-4">
+                        <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
+                            <h4 class="text-blue-400 font-mono text-xs mb-3"># User & Device</h4>
+                            <pre class="text-[10px] text-slate-400 leading-relaxed">
+user (
+  user_id uuid PK,
+  phone_hash varchar,
+  primary_role enum('patient', 'hospital_staff')
+)
+
+device (
+  device_id uuid PK,
+  user_id uuid FK,
+  facility_id uuid NULL,
+  status enum('approved', 'revoked')
+)</pre>
+                        </div>
+                        <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
+                            <h4 class="text-purple-400 font-mono text-xs mb-3"># Authorization & Claims</h4>
+                            <pre class="text-[10px] text-slate-400 leading-relaxed">
+auth_event (
+  auth_id uuid PK,
+  card_id uuid FK,
+  exposure_cap numeric,
+  status enum('requested', 'in_treatment', 'closed')
+)
+
+claim (
+  claim_id uuid PK,
+  treatment_id uuid FK,
+  status enum('submitted', 'processing', 'settled')
+)</pre>
+                        </div>
+                    </div>
+                </div>
+                <!-- API Surface -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold flex items-center gap-3"><i data-lucide="api"
+                            class="text-purple-500"></i> 7 — API Surface</h3>
+                    <div class="glass p-8 rounded-3xl space-y-6">
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <div class="flex justify-between items-center mb-2">
+                                <span
+                                    class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-md text-[9px] font-bold">POST</span>
+                                <span class="text-[10px] font-mono text-slate-500">/scan</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mb-3">Core endpoint for real-time treatment
+                                authorization.</p>
+                            <div class="bg-black/50 p-4 rounded-xl font-mono text-[9px] text-slate-300">
+                                { "qr_token": "...", "requested_amount": 12000 }
+                            </div>
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <div class="flex justify-between items-center mb-2">
+                                <span
+                                    class="px-3 py-1 bg-emerald-600/20 text-emerald-400 rounded-md text-[9px] font-bold">POST</span>
+                                <span class="text-[10px] font-mono text-slate-500">/treatment/{id}/complete</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mb-3">Triggers the claims orchestration pipeline.</p>
+                            <div class="bg-black/50 p-4 rounded-xl font-mono text-[9px] text-slate-300">
+                                { "invoice_refs": ["s3://inv1.pdf"] }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Automation Deep Dive -->
+        <section id="automation" class="section-reveal space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">8 — Claims <span
+                    class="text-blue-500">Automation</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-[2.5rem] relative group border-t-4 border-blue-500">
+                    <div class="text-blue-500 mb-6"><i data-lucide="camera" class="w-10 h-10"></i></div>
+                    <h4 class="text-xl font-bold mb-4">OCR / Parser</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Multi-stage pipeline: Normalization →
+                        Tesseract/Azure OCR → Custom NER Model. Extracts line items, provider details, and totals with
+                        per-field confidence.</p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] relative group border-t-4 border-purple-500">
+                    <div class="text-purple-500 mb-6"><i data-lucide="layout-template" class="w-10 h-10"></i></div>
+                    <h4 class="text-xl font-bold mb-4">Template Engine</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Rule-based mapping from extracted JSON to
+                        insurer-specific fields. Identifies missing ICD codes or rejection heuristics before submission.
+                    </p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] relative group border-t-4 border-emerald-500">
+                    <div class="text-emerald-500 mb-6"><i data-lucide="cpu" class="w-10 h-10"></i></div>
+                    <h4 class="text-xl font-bold mb-4">RPA Connectors</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Headless Puppeteer pool simulates human navigation
+                        on insurer portals. Manages auth sessions, form filling, and evidence uploads autonomously.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk, Security & Compliance -->
+        <section class="grid lg:grid-cols-3 gap-8 section-reveal">
+            <div class="lg:col-span-2 glass p-12 rounded-[3.5rem] space-y-8">
+                <h2 class="text-3xl font-black italic uppercase">10 — Risk Model</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
+                        <h4 class="text-blue-400 font-bold text-xs uppercase mb-4 tracking-widest">Confidence Mapping
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-[10px]">
+                                <span>HIGH (>=0.85)</span>
+                                <span class="font-black text-white">₹2,00,000 Cap</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                <div class="bg-blue-500 h-1.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px]">
+                                <span>MEDIUM (0.6-0.85)</span>
+                                <span class="font-black text-white">₹50,000 Cap</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                <div class="bg-blue-400 h-1.5 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
+                        <h4 class="text-emerald-400 font-bold text-xs uppercase mb-4 tracking-widest">11 — Security &
+                            Privacy</h4>
+                        <ul class="text-[10px] text-slate-400 space-y-2">
+                            <li>• <b>Device Binding:</b> HMAC signed tokens bound to device certs.</li>
+                            <li>• <b>Anti-Replay:</b> Single-use nonces for every scanning event.</li>
+                            <li>• <b>PII Minimal:</b> No raw Aadhaar storage; fully masked identities.</li>
+                            <li>• <b>Audit Logs:</b> HMAC-signed append-only event streams.</li>
                         </ul>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-12 overflow-hidden rounded-2xl border border-slate-800">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-white/5 text-[10px] uppercase tracking-widest">
-                        <tr>
-                            <th class="px-6 py-4">Metric</th>
-                            <th class="px-6 py-4">Existing System</th>
-                            <th class="px-6 py-4 text-blue-400">Our Solution</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-800 text-slate-400">
-                        <tr>
-                            <td class="px-6 py-4 font-bold text-white">Reception Time</td>
-                            <td class="px-6 py-4">10–30 min</td>
-                            <td class="px-6 py-4 text-blue-400 font-black">~0 min</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-bold text-white">Manual Verification</td>
-                            <td class="px-6 py-4">High</td>
-                            <td class="px-6 py-4 text-blue-400 font-black">Minimal</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-bold text-white">Upfront Payment</td>
-                            <td class="px-6 py-4">Required</td>
-                            <td class="px-6 py-4 text-blue-400 font-black">Not required</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-bold text-white">Automation Level</td>
-                            <td class="px-6 py-4">Low</td>
-                            <td class="px-6 py-4 text-blue-400 font-black">High</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="glass p-12 rounded-[3.5rem] flex flex-col justify-center border-t-4 border-orange-500/50">
+                <h2 class="text-2xl font-black italic uppercase mb-6">16 — Legal</h2>
+                <div class="space-y-4 text-xs text-slate-500 leading-relaxed">
+                    <p>Compliance with health data retention laws. PII storage minimal via hashing.</p>
+                    <p>Evidence bundles stored for 7 years as per regulatory auditing needs.</p>
+                    <div class="p-4 bg-orange-500/10 rounded-xl border border-orange-500/20 text-orange-400 font-bold">
+                        MOU defines platform settlement liability for hospitals.
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="team" class="text-center pt-10 border-t border-slate-900">
-            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
-            <div class="flex flex-wrap justify-center gap-10">
-                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
-                    <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
-                    <p class="font-black text-xl text-slate-100">Mayank Namdev</p>
+        <!-- Operational Metrics & Analysis -->
+        <section id="roadmap" class="glass p-12 rounded-[4rem] border-t-8 border-blue-600 section-reveal">
+            <h2 class="text-4xl font-black mb-12 text-center uppercase tracking-tighter italic">Results & <span
+                    class="text-blue-500">Rollout</span></h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="h-96"><canvas id="detailedChart"></canvas></div>
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-4">13 — Target SLOs</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 glass rounded-2xl text-center">
+                                <span class="block text-xl font-black">99.9%</span>
+                                <span class="text-[8px] text-slate-500 uppercase">Scan Success</span>
+                            </div>
+                            <div class="p-4 glass rounded-2xl text-center">
+                                <span class="block text-xl font-black">&lt;10 min</span>
+                                <span class="text-[8px] text-slate-500 uppercase">RPA Submission</span>
+                            </div>
+                            <div class="p-4 glass rounded-2xl text-center">
+                                <span class="block text-xl font-black">&lt;10%</span>
+                                <span class="text-[8px] text-slate-500 uppercase">Fallback Rate</span>
+                            </div>
+                            <div class="p-4 glass rounded-2xl text-center">
+                                <span class="block text-xl font-black">>60%</span>
+                                <span class="text-[8px] text-slate-500 uppercase">Auto Success</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-purple-400 font-bold uppercase text-xs tracking-widest mb-4">20 — Implementation
+                            Milestones</h4>
+                        <div class="space-y-3 relative">
+                            <div class="absolute left-1 top-0 bottom-0 w-0.5 bg-white/5"></div>
+                            <div class="relative pl-6">
+                                <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-blue-500"></div>
+                                <p class="text-[10px] font-bold">Q1: Skeleton & API Core</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-blue-500"></div>
+                                <p class="text-[10px] font-bold">Q2: Scan Engine & Risk Agent</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-slate-700"></div>
+                                <p class="text-[10px] font-bold text-slate-500">Q3: Automation (OCR/RPA) Deep Test</p>
+                            </div>
+                            <div class="relative pl-6">
+                                <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-slate-700"></div>
+                                <p class="text-[10px] font-bold text-slate-500">Q4: Pilot Hospital Rollout</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
-                    <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Team Member 1</p>
-                    <p class="font-black text-xl text-slate-100">Krish Ray</p>
-                    <p class="text-[10px] text-slate-500 mt-1">23FE10CSE00318</p>
+            </div>
+        </section>
+
+        <!-- Final Team Section -->
+        <section id="team" class="text-center pt-20 border-t border-white/5 section-reveal">
+            <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.6em] mb-16">Academic Documentation
+                Credits</h2>
+            <div class="flex flex-wrap justify-center gap-12">
+                <div
+                    class="glass px-16 py-10 rounded-[3rem] border-b-8 border-blue-600 group hover:-translate-y-2 transition-transform">
+                    <p class="text-[10px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
+                    <p class="font-black text-3xl text-slate-100 italic">Mayank Namdev</p>
+                    <p class="text-[9px] text-slate-500 mt-2 uppercase tracking-widest">Faculty of Engineering</p>
+                </div>
+                <div
+                    class="glass px-16 py-10 rounded-[3rem] border-b-8 border-slate-700 group hover:-translate-y-2 transition-transform">
+                    <p class="text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-widest">Lead Researcher</p>
+                    <p class="font-black text-3xl text-slate-100 italic">Krish Ray</p>
+                    <p class="text-[9px] text-slate-500 mt-2 uppercase tracking-widest">ID: 23FE10CSE00318</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
-        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
-        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer
-            Science & Engineering • 2026</p>
+    <footer class="py-20 text-center bg-black/80 border-t border-white/5 relative z-10">
+        <p class="text-slate-500 text-[11px] font-bold tracking-[0.5em] uppercase mb-4">Manipal University Jaipur</p>
+        <p class="text-slate-600 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50 px-6">
+            Department of Computer Science & Engineering • Healthcare Innovation Lab • 2026
+        </p>
+        <div
+            class="mt-8 flex justify-center gap-6 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all">
+            <i class="fab fa-github text-xl"></i>
+            <i class="fab fa-linkedin text-xl"></i>
+            <i class="fas fa-envelope text-xl"></i>
+        </div>
     </footer>
 
     <script>
+        // THREE.JS BACKGROUND
+        const canvas = document.querySelector('#three-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 2;
+
+        // Particle Net
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 3000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 5;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: '#3b82f6',
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.0005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP REVEALS
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            gsap.to(section, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
         // TIMER LOGIC
         let sec = 0;
         let timer = null;
@@ -271,27 +794,31 @@
 
                 if (sec >= 480 && sec < 600) { // 8-10 Mins Warning
                     document.getElementById('timerContainer').classList.add('timer-warning');
-                    document.getElementById('timerIcon').classList.replace('fa-hourglass-start', 'fa-hourglass-half');
+                    document.getElementById('timerIcon').className = 'fas fa-hourglass-half';
                 } else if (sec >= 600) { // 10 Mins Stop
                     clearInterval(timer);
-                    document.getElementById('timerContainer').classList.replace('timer-warning', 'timer-stop');
+                    document.getElementById('timerContainer').classList.add('bg-red-600', 'text-white');
                     document.getElementById('displayTime').innerText = "10:00";
-                    document.getElementById('timerIcon').classList.replace('fa-hourglass-half', 'fa-hourglass-end');
+                    document.getElementById('timerIcon').className = 'fas fa-hourglass-end';
                 }
             }, 1000);
         }
 
-        // RESULTS CHART (Demo Data)
-        const ctx = document.getElementById('resultsChart').getContext('2d');
+        // CHART LOGIC
+        const ctx = document.getElementById('detailedChart').getContext('2d');
         new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: ['Existing System', 'Our Solution'],
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
                 datasets: [{
-                    data: [70, 92],
-                    backgroundColor: ['#1e293b', '#3b82f6'],
-                    borderRadius: 15,
-                    barThickness: 50
+                    label: 'Automation Success Rate (%)',
+                    data: [10, 25, 45, 60, 78, 92],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#fff'
                 }]
             },
             options: {
@@ -299,11 +826,21 @@
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    y: { beginAtZero: true, grid: { color: '#ffffff05' }, ticks: { color: '#475569' } },
-                    x: { grid: { display: false }, ticks: { color: '#475569' } }
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { color: '#64748b', font: { size: 10 } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#64748b', font: { size: 10 } }
+                    }
                 }
             }
         });
+
+        // LUCIDE ICONS
+        lucide.createIcons();
     </script>
 </body>
 
