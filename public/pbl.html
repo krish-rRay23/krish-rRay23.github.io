@@ -175,13 +175,13 @@
             <div class="flex flex-col">
                 <span class="text-lg font-extrabold text-white leading-none uppercase tracking-tight">BHP <span
                         class="text-blue-500 italic">2026</span></span>
-                <span class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em]">Health Orchestration</span>
+                <span class="text-[8px] text-slate-400 font-bold uppercase tracking-[0.2em]">AI-Powered Health Wallet</span>
             </div>
         </div>
         <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
             <a href="#summary" class="nav-link">Summary</a>
             <a href="#architecture" class="nav-link">Architecture</a>
-            <a href="#workflow" class="nav-link">Workflow</a>
+            <a href="#workflow" class="nav-link">Workflow</a>   
             <a href="#fallbacks" class="nav-link">Fallbacks</a>
             <a href="#technical" class="nav-link">Technical</a>
             <a href="#automation" class="nav-link">Automation</a>
@@ -205,7 +205,7 @@
                 <span class="gradient-text uppercase">Bharat Health Pass</span>
             </h1>
             <p class="text-slate-300 text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-12 leading-relaxed">
-                A Fallback-First Health Access System for Zero-Queue Treatment and Asynchronous Settlement.
+                AI-powered Digital Health Wallet enabling secure records, intelligent insights, and seamless hospital interactions.
             </p>
             <div class="flex flex-wrap justify-center gap-6 mb-24">
                 <a href="#workflow"
@@ -221,29 +221,29 @@
                 <div class="glass p-8 rounded-3xl glass-hover">
                     <div
                         class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6 text-blue-500">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
+                        <i data-lucide="folder-heart" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Zero Delay</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Eliminate manual intake queues by issuing
-                        tokenized digital health cards. QR = Authorization to defer settlement.</p>
+                    <h3 class="text-xl font-bold mb-4">Unified Health Records</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Centralize all medical history, prescriptions, and
+                        lab reports in a single, structured digital vault.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl glass-hover">
                     <div
                         class="w-12 h-12 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6 text-purple-500">
-                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        <i data-lucide="bot" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Privacy First</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">QR contains no PII. Backend orchestrates data via
-                        masked summaries and identity confidence scoring.</p>
+                    <h3 class="text-xl font-bold mb-4">AI Health Copilot</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Intelligent insights powered by Groq LLM to simplify
+                        complex reports and prepare you for doctor visits.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl glass-hover">
                     <div
                         class="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center mb-6 text-teal-500">
-                        <i data-lucide="refresh-cw" class="w-6 h-6"></i>
+                        <i data-lucide="qr-code" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Deterministic Fallback</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">System scales without external APIs by simulating
-                        human submission via RPA and custom template engines.</p>
+                    <h3 class="text-xl font-bold mb-4">Secure Health Pass</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Instant hospital intake via QR-based identity.
+                        Secure, encrypted, and privacy-first data sharing.</p>
                 </div>
             </div>
         </section>
@@ -253,32 +253,31 @@
             <div class="glass p-10 rounded-[3rem] border-l-4 border-blue-500">
                 <h2 class="text-3xl font-black mb-8">1 — High-Level Summary</h2>
                 <div class="space-y-6 text-slate-400 leading-relaxed text-sm">
-                    <p>BHPs core mission is to eliminate manual data entry and queue delays for hospital intake and
-                        billing by issuing a tokenized digital health access card (QR) from a single mobile app.</p>
+                    <p>Bharat Health Pass (BHP) is an AI-driven digital wallet that centralizes health data and
+                        streamlines hospital interactions through intelligent processing.</p>
                     <div class="p-6 bg-white/5 rounded-2xl border border-white/10 italic border-l-4 border-blue-400">
-                        "QR = authorization to defer settlement + pointer to evidence & liability."
+                        "Centralized health data + AI understanding + QR-based identity."
                     </div>
-                    <p>Everything else is automated: OCR → template mapping → RPA/API submission → tracking → settle /
-                        fallback.</p>
+                    <p>BHP eliminates documentation friction: Mobile Upload → ML Kit OCR → Groq LLM Intelligence → Secure Firestore → Hospital QR Scan.</p>
                 </div>
             </div>
             <div class="glass p-10 rounded-[3rem] border-l-4 border-purple-500">
-                <h2 class="text-3xl font-black mb-8">4 — Core Design Decisions</h2>
+                <h2 class="text-3xl font-black mb-8">2 — Core Design Decisions</h2>
                 <div class="space-y-4">
                     <div class="p-4 bg-white/5 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-xs uppercase mb-2">Single App (Two Modes)</h4>
-                        <p class="text-slate-500 text-[11px]">Strict device registration + RBAC. Simpler distribution,
-                            unified UX, less dev overhead.</p>
+                        <h4 class="text-white font-bold text-xs uppercase mb-2">Kotlin & Jetpack Compose</h4>
+                        <p class="text-slate-500 text-[11px]">Built for performance and modern UX on Android with a
+                            clean, reactive UI architecture.</p>
                     </div>
                     <div class="p-4 bg-white/5 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-xs uppercase mb-2">Deferred Settlement</h4>
-                        <p class="text-slate-500 text-[11px]">Platform authorizes treatment via exposure caps; backend
-                            handles verification later. Enables no-queue care.</p>
+                        <h4 class="text-white font-bold text-xs uppercase mb-2">AI Processing Layer</h4>
+                        <p class="text-slate-500 text-[11px]">Groq API for fast LLM inference combined with on-device
+                            ML Kit for secure OCR extraction.</p>
                     </div>
                     <div class="p-4 bg-white/5 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-xs uppercase mb-2">RPA + Email Fallbacks</h4>
-                        <p class="text-slate-500 text-[11px]">Simulates human submission when APIs are unavailable.
-                            Allows scale without privileged integrations.</p>
+                        <h4 class="text-white font-bold text-xs uppercase mb-2">Firebase Backend</h4>
+                        <p class="text-slate-500 text-[11px]">Full integration with Auth, Firestore, and Storage for
+                            scalable, real-time health data management.</p>
                     </div>
                 </div>
             </div>
@@ -286,7 +285,7 @@
 
         <!-- Architecture Diagram -->
         <section id="architecture" class="section-reveal space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">2 — System <span
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">3 — System <span
                     class="text-blue-500">Architecture</span></h2>
             <div class="glass p-12 rounded-[4rem] relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10 pointer-events-none">
@@ -300,30 +299,30 @@
                         <div class="p-6 bg-blue-500/20 border border-blue-500/30 rounded-3xl">
                             <i data-lucide="smartphone" class="w-10 h-10 mx-auto mb-4 text-blue-500"></i>
                             <h4 class="font-bold text-xs">Patient App</h4>
-                            <p class="text-[10px] text-slate-500 mt-2">QR Generation, Doc Upload, OTC Dashboard</p>
+                            <p class="text-[10px] text-slate-500 mt-2">Kotlin/Compose, OCR Upload, AI Chat</p>
                         </div>
                         <div class="text-blue-500"><i class="fas fa-arrow-down"></i></div>
                         <div class="p-4 bg-white/5 border border-white/10 rounded-2xl">
-                            <h4 class="font-bold text-[10px]">AUTH SERVICE</h4>
+                            <h4 class="font-bold text-[10px]">AUTH MODULE</h4>
                         </div>
                     </div>
                     <!-- Backend Core -->
                     <div class="md:col-span-2 space-y-4">
                         <div class="p-10 glass border-blue-500/40 rounded-[3rem]">
-                            <h4 class="text-xl font-bold mb-6 gradient-text uppercase italic">Central Backend Core</h4>
+                            <h4 class="text-xl font-bold mb-6 gradient-text uppercase italic">Central Firebase Ecosystem</h4>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
-                                    IDENTITY AGENT</div>
+                                    HEALTH RECORDS ENGINE</div>
                                 <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
-                                    ELIGIBILITY AGENT</div>
+                                    AI PROCESSING LAYER</div>
                                 <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
-                                    CREDIT & RISK</div>
+                                    HOSPITAL WORKFLOW ENGINE</div>
                                 <div class="p-3 bg-white/5 rounded-xl border border-white/5 text-[10px] font-bold">
-                                    SETTLEMENT AGENT</div>
+                                    AUDIT & SECURITY</div>
                             </div>
                             <div
                                 class="mt-6 p-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl text-[10px] font-bold uppercase tracking-widest">
-                                Claims Orchestrator
+                                Groq AI (LLM) + ML Kit (OCR)
                             </div>
                         </div>
                     </div>
@@ -331,8 +330,8 @@
                     <div class="space-y-4">
                         <div class="p-6 bg-emerald-500/20 border border-emerald-500/30 rounded-3xl">
                             <i data-lucide="hospital" class="w-10 h-10 mx-auto mb-4 text-emerald-500"></i>
-                            <h4 class="font-bold text-xs">Hospital App</h4>
-                            <p class="text-[10px] text-slate-500 mt-2">QR Scanner, Treatment Records, Invoice Upload</p>
+                            <h4 class="font-bold text-xs">Hospital Portal</h4>
+                            <p class="text-[10px] text-slate-500 mt-2">QR Scanner, Patient History, Treatment Logs</p>
                         </div>
                         <div class="text-emerald-500"><i class="fas fa-arrow-down"></i></div>
                         <div class="p-4 bg-white/5 border border-white/10 rounded-2xl">
@@ -342,16 +341,16 @@
                 </div>
                 <div class="mt-8 grid md:grid-cols-3 gap-6">
                     <div class="p-5 glass rounded-2xl border-blue-500/20 text-center">
-                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Identity Proof</h5>
-                        <p class="text-[10px] font-bold">Firebase OTP + Face Match</p>
+                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Authentication Layer</h5>
+                        <p class="text-[10px] font-bold">Firebase (Email + Google)</p>
                     </div>
                     <div class="p-5 glass rounded-2xl border-purple-500/20 text-center">
                         <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Storage Layer</h5>
-                        <p class="text-[10px] font-bold">PostgreSQL + S3 (Minio)</p>
+                        <p class="text-[10px] font-bold">Firestore + Firebase Storage</p>
                     </div>
                     <div class="p-5 glass rounded-2xl border-emerald-500/20 text-center">
-                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">Execution Layer</h5>
-                        <p class="text-[10px] font-bold">RPA (Puppeteer) + OCR Pipeline</p>
+                        <h5 class="text-[9px] font-black uppercase text-slate-500 mb-2">AI Execution Layer</h5>
+                        <p class="text-[10px] font-bold">Groq API + ML Kit OCR</p>
                     </div>
                 </div>
             </div>
@@ -359,7 +358,7 @@
 
         <!-- Detailed Workflow -->
         <section id="workflow" class="section-reveal space-y-12">
-            <h2 class="text-4xl font-black text-center uppercase tracking-tight">3 — End-to-End <span
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">4 — End-to-End <span
                     class="text-blue-500">Workflow</span></h2>
             <div class="space-y-8">
                 <!-- Step 1 -->
@@ -368,14 +367,14 @@
                         <div
                             class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition group-hover:scale-105 border-l-8 border-blue-500">
                             <span class="absolute top-8 right-8 text-8xl font-black text-white/5">01</span>
-                            <h4 class="text-2xl font-bold mb-4">Onboarding (Patient)</h4>
+                            <h4 class="text-2xl font-bold mb-4">Authentication</h4>
                             <ul class="space-y-3 text-slate-400 text-sm">
-                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Phone + OTP
-                                    verification via Firebase.</li>
-                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Doc upload: ID,
-                                    Policy, Selfie for matching.</li>
-                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Backend issues
-                                    signed, time-bound QR token.</li>
+                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Seamless Google +
+                                    Email onboarding via Firebase Auth.</li>
+                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Zero-knowledge
+                                    user profiling for personalized health views.</li>
+                                <li class="flex gap-3"><i class="fas fa-check text-blue-500 mt-1"></i> Biometric device
+                                    binding for high-security health data access.</li>
                             </ul>
                         </div>
                     </div>
@@ -384,14 +383,14 @@
                         <div
                             class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition hover:scale-105 border-l-8 border-emerald-500">
                             <span class="absolute top-8 right-8 text-8xl font-black text-white/5">02</span>
-                            <h4 class="text-2xl font-bold mb-4">Visit + Authorization</h4>
+                            <h4 class="text-2xl font-bold mb-4">Record Upload</h4>
                             <ul class="space-y-3 text-slate-400 text-sm">
-                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Hospital scans
-                                    QR → Real-time scan endpoint.</li>
-                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Identity & Risk
-                                    agents compute exposure cap.</li>
-                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Authorization
-                                    issued; Zero-Queue treatment starts.</li>
+                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Upload prescriptions,
+                                    lab reports, or insurance docs.</li>
+                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Secure storage in
+                                    Firebase with granular access control.</li>
+                                <li class="flex gap-3"><i class="fas fa-bolt text-emerald-500 mt-1"></i> Instant indexing for
+                                    immediate AI-driven health insights.</li>
                             </ul>
                         </div>
                     </div>
@@ -402,14 +401,14 @@
                         <div
                             class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition group-hover:scale-105 border-l-8 border-purple-500">
                             <span class="absolute top-8 right-8 text-8xl font-black text-white/5">03</span>
-                            <h4 class="text-2xl font-bold mb-4">Claims Automation</h4>
+                            <h4 class="text-2xl font-bold mb-4">AI Processing</h4>
                             <ul class="space-y-3 text-slate-400 text-sm">
-                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> Treatment
-                                    complete → Invoice OCR extraction.</li>
-                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> RPA Engine
-                                    submits to insurer portal/portal stubs.</li>
+                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> On-device ML Kit
+                                    extracts critical text and data fields.</li>
+                                <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> Groq AI transforms
+                                    raw medical jargon into simple insights.</li>
                                 <li class="flex gap-3"><i class="fas fa-robot text-purple-500 mt-1"></i> Automated
-                                    status tracking & human-in-loop handling.</li>
+                                    flagging of trends and pre-visit report generation.</li>
                             </ul>
                         </div>
                     </div>
@@ -418,14 +417,14 @@
                         <div
                             class="relative overflow-hidden rounded-[2.5rem] glass p-10 transform transition hover:scale-105 border-l-8 border-orange-500">
                             <span class="absolute top-8 right-8 text-8xl font-black text-white/5">04</span>
-                            <h4 class="text-2xl font-bold mb-4">Settlement & Audit</h4>
+                            <h4 class="text-2xl font-bold mb-4">Health Pass + Hospital</h4>
                             <ul class="space-y-3 text-slate-400 text-sm">
-                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Released
-                                    payment upon claim approval.</li>
-                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Signed event
-                                    logs & evidence bundle archival.</li>
-                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Fallback
-                                    recovery if claim rejected after timeout.</li>
+                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Instant QR scan
+                                    enables secure record sharing with providers.</li>
+                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> hospital mode allows
+                                    doctors to view full AIed summaries.</li>
+                                <li class="flex gap-3"><i class="fas fa-coins text-orange-500 mt-1"></i> Secure audit logs
+                                    track every access and treatment event.</li>
                             </ul>
                         </div>
                     </div>
@@ -447,28 +446,28 @@
                 </div>
                 <div class="divide-y divide-white/5">
                     <div class="grid md:grid-cols-4 matrix-cell">
-                        <div class="text-blue-400 font-bold text-sm">ABHA Lookup</div>
-                        <div class="text-slate-400 text-xs">ABHA API</div>
-                        <div class="text-slate-500 text-xs">Local DB Stub</div>
-                        <div class="text-slate-500 text-xs italic">Self-declared Policy</div>
+                        <div class="text-blue-400 font-bold text-sm">OCR Pipeline</div>
+                        <div class="text-slate-400 text-xs">ML Kit On-Device</div>
+                        <div class="text-slate-500 text-xs">Tesseract Fallback</div>
+                        <div class="text-slate-500 text-xs italic">Manual Correction</div>
                     </div>
                     <div class="grid md:grid-cols-4 matrix-cell">
-                        <div class="text-blue-400 font-bold text-sm">Insurer Submit</div>
-                        <div class="text-slate-400 text-xs">Insurer API</div>
-                        <div class="text-slate-500 text-xs">RPA Portal</div>
-                        <div class="text-slate-500 text-xs italic">Structured Email</div>
+                        <div class="text-blue-400 font-bold text-sm">AI Processing</div>
+                        <div class="text-slate-400 text-xs">Groq LLM (High-Speed)</div>
+                        <div class="text-slate-500 text-xs">Structured Prompts</div>
+                        <div class="text-slate-500 text-xs italic">Heuristic Engine</div>
                     </div>
                     <div class="grid md:grid-cols-4 matrix-cell">
-                        <div class="text-blue-400 font-bold text-sm">Payment</div>
-                        <div class="text-slate-400 text-xs">Payment Gateway</div>
-                        <div class="text-slate-500 text-xs">Manual Invoice</div>
-                        <div class="text-slate-500 text-xs italic">Deferred Payout</div>
+                        <div class="text-blue-400 font-bold text-sm">Networking</div>
+                        <div class="text-slate-400 text-xs">Real-time Firebase</div>
+                        <div class="text-slate-500 text-xs">Offline Sync Queue</div>
+                        <div class="text-slate-500 text-xs italic">Network Retry</div>
                     </div>
                     <div class="grid md:grid-cols-4 matrix-cell">
-                        <div class="text-blue-400 font-bold text-sm">OCR</div>
-                        <div class="text-slate-400 text-xs">Auto-NER ML</div>
-                        <div class="text-slate-500 text-xs">Human-in-Loop</div>
-                        <div class="text-slate-500 text-xs italic">Manual Entry</div>
+                        <div class="text-blue-400 font-bold text-sm">Authentication</div>
+                        <div class="text-slate-400 text-xs">Firebase Google/Email</div>
+                        <div class="text-slate-500 text-xs">Biometric Fallback</div>
+                        <div class="text-slate-500 text-xs italic">Security PIN</div>
                     </div>
                 </div>
                 <div class="p-8 bg-blue-500/5 text-center italic text-slate-500 text-xs">
@@ -488,36 +487,23 @@
                             class="text-blue-500"></i> 6 — Data Model</h3>
                     <div class="glass p-8 rounded-3xl space-y-4">
                         <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
-                            <h4 class="text-blue-400 font-mono text-xs mb-3"># User & Device</h4>
+                            <h4 class="text-blue-400 font-mono text-xs mb-3"># Collections: users/{uid}</h4>
                             <pre class="text-[10px] text-slate-400 leading-relaxed">
-user (
-  user_id uuid PK,
-  phone_hash varchar,
-  primary_role enum('patient', 'hospital_staff')
-)
-
-device (
-  device_id uuid PK,
-  user_id uuid FK,
-  facility_id uuid NULL,
-  status enum('approved', 'revoked')
-)</pre>
+{
+  "profile": { "name": "...", "email": "..." },
+  "healthPass": { "qrToken": "...", "expiry": "..." },
+  "settings": { "biometricEnabled": true }
+}</pre>
                         </div>
                         <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
-                            <h4 class="text-purple-400 font-mono text-xs mb-3"># Authorization & Claims</h4>
+                            <h4 class="text-purple-400 font-mono text-xs mb-3"># Collections: healthRecords/{recordId}</h4>
                             <pre class="text-[10px] text-slate-400 leading-relaxed">
-auth_event (
-  auth_id uuid PK,
-  card_id uuid FK,
-  exposure_cap numeric,
-  status enum('requested', 'in_treatment', 'closed')
-)
-
-claim (
-  claim_id uuid PK,
-  treatment_id uuid FK,
-  status enum('submitted', 'processing', 'settled')
-)</pre>
+{
+  "userId": "uid_ref",
+  "aiSummary": "...",
+  "fileUrl": "gs://...",
+  "metadata": { "type": "prescription", "date": "..." }
+}</pre>
                         </div>
                     </div>
                 </div>
@@ -530,23 +516,22 @@ claim (
                             <div class="flex justify-between items-center mb-2">
                                 <span
                                     class="px-3 py-1 bg-blue-600/20 text-blue-400 rounded-md text-[9px] font-bold">POST</span>
-                                <span class="text-[10px] font-mono text-slate-500">/scan</span>
+                                <span class="text-[10px] font-mono text-slate-500">/groq/chat</span>
                             </div>
-                            <p class="text-[10px] text-slate-400 mb-3">Core endpoint for real-time treatment
-                                authorization.</p>
+                            <p class="text-[10px] text-slate-400 mb-3">Conversational AI interface for health record analysis.</p>
                             <div class="bg-black/50 p-4 rounded-xl font-mono text-[9px] text-slate-300">
-                                { "qr_token": "...", "requested_amount": 12000 }
+                                { "prompt": "Can you simplify this blood report?", "context": "..." }
                             </div>
                         </div>
                         <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
                             <div class="flex justify-between items-center mb-2">
                                 <span
                                     class="px-3 py-1 bg-emerald-600/20 text-emerald-400 rounded-md text-[9px] font-bold">POST</span>
-                                <span class="text-[10px] font-mono text-slate-500">/treatment/{id}/complete</span>
+                                <span class="text-[10px] font-mono text-slate-500">/generate-summary</span>
                             </div>
-                            <p class="text-[10px] text-slate-400 mb-3">Triggers the claims orchestration pipeline.</p>
+                            <p class="text-[10px] text-slate-400 mb-3">Triggers LLM processing to structure raw OCR data.</p>
                             <div class="bg-black/50 p-4 rounded-xl font-mono text-[9px] text-slate-300">
-                                { "invoice_refs": ["s3://inv1.pdf"] }
+                                { "rawText": "...", "format": "patient_easy" }
                             </div>
                         </div>
                     </div>
@@ -561,23 +546,21 @@ claim (
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="glass p-10 rounded-[2.5rem] relative group border-t-4 border-blue-500">
                     <div class="text-blue-500 mb-6"><i data-lucide="camera" class="w-10 h-10"></i></div>
-                    <h4 class="text-xl font-bold mb-4">OCR / Parser</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed">Multi-stage pipeline: Normalization →
-                        Tesseract/Azure OCR → Custom NER Model. Extracts line items, provider details, and totals with
-                        per-field confidence.</p>
+                    <h4 class="text-xl font-bold mb-4">ML Kit OCR</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">On-device text recognition pipeline for rapid, 
+                        private data extraction from images. Handles various medical document layouts with high accuracy.</p>
                 </div>
                 <div class="glass p-10 rounded-[2.5rem] relative group border-t-4 border-purple-500">
-                    <div class="text-purple-500 mb-6"><i data-lucide="layout-template" class="w-10 h-10"></i></div>
-                    <h4 class="text-xl font-bold mb-4">Template Engine</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed">Rule-based mapping from extracted JSON to
-                        insurer-specific fields. Identifies missing ICD codes or rejection heuristics before submission.
-                    </p>
+                    <div class="text-purple-500 mb-6"><i data-lucide="brain-circuit" class="w-10 h-10"></i></div>
+                    <h4 class="text-xl font-bold mb-4">Groq AI Layer</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Leverages Groq's high-speed inference for real-time 
+                        LLM processing. Simplifies medical jargon into patient-friendly summaries instantly.</p>
                 </div>
                 <div class="glass p-10 rounded-[2.5rem] relative group border-t-4 border-emerald-500">
-                    <div class="text-emerald-500 mb-6"><i data-lucide="cpu" class="w-10 h-10"></i></div>
-                    <h4 class="text-xl font-bold mb-4">RPA Connectors</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed">Headless Puppeteer pool simulates human navigation
-                        on insurer portals. Manages auth sessions, form filling, and evidence uploads autonomously.</p>
+                    <div class="text-emerald-500 mb-6"><i data-lucide="database" class="w-10 h-10"></i></div>
+                    <h4 class="text-xl font-bold mb-4">Data Structuring</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Transforms unstructured OCR output into clean, 
+                        queryable Firestore documents. Ensures data consistency across the entire ecosystem.</p>
                 </div>
             </div>
         </section>
@@ -585,25 +568,25 @@ claim (
         <!-- Risk, Security & Compliance -->
         <section class="grid lg:grid-cols-3 gap-8 section-reveal">
             <div class="lg:col-span-2 glass p-12 rounded-[3.5rem] space-y-8">
-                <h2 class="text-3xl font-black italic uppercase">10 — Risk Model</h2>
+                <h2 class="text-3xl font-black italic uppercase">9 — Risk Model</h2>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="p-6 bg-white/5 rounded-3xl border border-white/10">
                         <h4 class="text-blue-400 font-bold text-xs uppercase mb-4 tracking-widest">Confidence Mapping
                         </h4>
                         <div class="space-y-4">
                             <div class="flex justify-between items-center text-[10px]">
-                                <span>HIGH (>=0.85)</span>
-                                <span class="font-black text-white">₹2,00,000 Cap</span>
+                                <span>HIGH (>=0.90)</span>
+                                <span class="font-black text-white">Direct Processing</span>
                             </div>
                             <div class="w-full bg-slate-800 rounded-full h-1.5">
                                 <div class="bg-blue-500 h-1.5 rounded-full" style="width: 100%"></div>
                             </div>
                             <div class="flex justify-between items-center text-[10px]">
-                                <span>MEDIUM (0.6-0.85)</span>
-                                <span class="font-black text-white">₹50,000 Cap</span>
+                                <span>MEDIUM (0.7-0.90)</span>
+                                <span class="font-black text-white">Heuristic Review</span>
                             </div>
                             <div class="w-full bg-slate-800 rounded-full h-1.5">
-                                <div class="bg-blue-400 h-1.5 rounded-full" style="width: 40%"></div>
+                                <div class="bg-blue-400 h-1.5 rounded-full" style="width: 60%"></div>
                             </div>
                         </div>
                     </div>
@@ -611,21 +594,21 @@ claim (
                         <h4 class="text-emerald-400 font-bold text-xs uppercase mb-4 tracking-widest">11 — Security &
                             Privacy</h4>
                         <ul class="text-[10px] text-slate-400 space-y-2">
-                            <li>• <b>Device Binding:</b> HMAC signed tokens bound to device certs.</li>
-                            <li>• <b>Anti-Replay:</b> Single-use nonces for every scanning event.</li>
-                            <li>• <b>PII Minimal:</b> No raw Aadhaar storage; fully masked identities.</li>
-                            <li>• <b>Audit Logs:</b> HMAC-signed append-only event streams.</li>
+                            <li>• <b>Biometric Lock:</b> App access secured via fingerprint/face unlock.</li>
+                            <li>• <b>AES-256 Encryption:</b> All health records encrypted at rest & in transit.</li>
+                            <li>• <b>Identity Masking:</b> No raw biometric or PII data stored in clear text.</li>
+                            <li>• <b>Signed Logs:</b> Audit trails of every document access and scan.</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="glass p-12 rounded-[3.5rem] flex flex-col justify-center border-t-4 border-orange-500/50">
-                <h2 class="text-2xl font-black italic uppercase mb-6">16 — Legal</h2>
+                <h2 class="text-2xl font-black italic uppercase mb-6">10 — Legal</h2>
                 <div class="space-y-4 text-xs text-slate-500 leading-relaxed">
-                    <p>Compliance with health data retention laws. PII storage minimal via hashing.</p>
-                    <p>Evidence bundles stored for 7 years as per regulatory auditing needs.</p>
+                    <p>Compliance with Digital Personal Data Protection (DPDP) Act. Patient consent is central.</p>
+                    <p>Records stored with end-to-end encryption, ensuring only authorized providers see data.</p>
                     <div class="p-4 bg-orange-500/10 rounded-xl border border-orange-500/20 text-orange-400 font-bold">
-                        MOU defines platform settlement liability for hospitals.
+                        User retains full ownership and control over data sharing permissions.
                     </div>
                 </div>
             </div>
@@ -642,20 +625,20 @@ claim (
                         <h4 class="text-blue-400 font-bold uppercase text-xs tracking-widest mb-4">13 — Target SLOs</h4>
                         <div class="grid grid-cols-2 gap-4">
                             <div class="p-4 glass rounded-2xl text-center">
-                                <span class="block text-xl font-black">99.9%</span>
-                                <span class="text-[8px] text-slate-500 uppercase">Scan Success</span>
+                                <span class="block text-xl font-black">98.5%</span>
+                                <span class="text-[8px] text-slate-500 uppercase">OCR Accuracy</span>
                             </div>
                             <div class="p-4 glass rounded-2xl text-center">
-                                <span class="block text-xl font-black">&lt;10 min</span>
-                                <span class="text-[8px] text-slate-500 uppercase">RPA Submission</span>
+                                <span class="block text-xl font-black">&lt;2 sec</span>
+                                <span class="text-[8px] text-slate-500 uppercase">AI Token/Sec</span>
                             </div>
                             <div class="p-4 glass rounded-2xl text-center">
-                                <span class="block text-xl font-black">&lt;10%</span>
-                                <span class="text-[8px] text-slate-500 uppercase">Fallback Rate</span>
+                                <span class="block text-xl font-black">&lt;500ms</span>
+                                <span class="text-[8px] text-slate-500 uppercase">Scan Latency</span>
                             </div>
                             <div class="p-4 glass rounded-2xl text-center">
-                                <span class="block text-xl font-black">>60%</span>
-                                <span class="text-[8px] text-slate-500 uppercase">Auto Success</span>
+                                <span class="block text-xl font-black">>95%</span>
+                                <span class="text-[8px] text-slate-500 uppercase">Real-time Sync</span>
                             </div>
                         </div>
                     </div>
@@ -666,19 +649,19 @@ claim (
                             <div class="absolute left-1 top-0 bottom-0 w-0.5 bg-white/5"></div>
                             <div class="relative pl-6">
                                 <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-blue-500"></div>
-                                <p class="text-[10px] font-bold">Q1: Skeleton & API Core</p>
+                                <p class="text-[10px] font-bold">Q1: App Architecture & Firebase Setup</p>
                             </div>
                             <div class="relative pl-6">
                                 <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-blue-500"></div>
-                                <p class="text-[10px] font-bold">Q2: Scan Engine & Risk Agent</p>
+                                <p class="text-[10px] font-bold">Q2: ML Kit OCR & record Structuring</p>
                             </div>
                             <div class="relative pl-6">
                                 <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-slate-700"></div>
-                                <p class="text-[10px] font-bold text-slate-500">Q3: Automation (OCR/RPA) Deep Test</p>
+                                <p class="text-[10px] font-bold text-slate-500">Q3: Groq LLM Integration & Copilot Beta</p>
                             </div>
                             <div class="relative pl-6">
                                 <div class="absolute left-0 top-1 w-2 h-2 rounded-full bg-slate-700"></div>
-                                <p class="text-[10px] font-bold text-slate-500">Q4: Pilot Hospital Rollout</p>
+                                <p class="text-[10px] font-bold text-slate-500">Q4: Hospital QR Pilot & Analytics</p>
                             </div>
                         </div>
                     </div>
@@ -811,8 +794,8 @@ claim (
             data: {
                 labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
                 datasets: [{
-                    label: 'Automation Success Rate (%)',
-                    data: [10, 25, 45, 60, 78, 92],
+                    label: 'AI-Driven Processing Efficiency (%)',
+                    data: [15, 35, 55, 72, 88, 98],
                     borderColor: '#3b82f6',
                     backgroundColor: 'rgba(59, 130, 246, 0.1)',
                     fill: true,
