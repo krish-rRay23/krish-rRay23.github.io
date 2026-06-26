@@ -87,7 +87,7 @@
 			<div class="text-center mb-12">
 				<h3 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
 					Soft 
-					<span class="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+					<span class="bg-gradient-to-r from~-green-600 to-blue-600 bg-clip-text text-transparent">
 						Skills
 					</span>
 				</h3>
@@ -150,45 +150,47 @@
 <script type="module">
 	// Updated comprehensive skills data for Krish Ray
 	const skillsData = {
-		programming: [
+		languages: [
 			{ name: 'Python', level: 95, color: 'from-blue-500 to-cyan-600', icon: '🐍' },
-			{ name: 'C/C++', level: 88, color: 'from-blue-600 to-indigo-700', icon: '⚡' },
+			{ name: 'C++', level: 88, color: 'from-blue-600 to-indigo-700', icon: '⚡' },
 			{ name: 'Java', level: 85, color: 'from-orange-500 to-red-600', icon: '☕' },
 			{ name: 'SQL', level: 90, color: 'from-blue-400 to-blue-600', icon: '🗄️' },
 			{ name: 'MATLAB', level: 82, color: 'from-orange-400 to-red-500', icon: '📊' },
-			{ name: 'JavaScript', level: 88, color: 'from-yellow-400 to-orange-500', icon: '🟨' },
-			{ name: 'HTML/CSS', level: 92, color: 'from-red-400 to-pink-500', icon: '🌐' }
-		],
-		aiRobotics: [
-			{ name: 'Artificial Intelligence', level: 90, color: 'from-purple-500 to-pink-600', icon: '🧠' },
-			{ name: 'Machine Learning', level: 88, color: 'from-green-500 to-teal-600', icon: '🤖' },
-			{ name: 'Deep Learning', level: 85, color: 'from-indigo-500 to-purple-600', icon: '🧮' },
-			{ name: 'Computer Vision', level: 92, color: 'from-cyan-500 to-blue-600', icon: '👁️' },
-			{ name: 'Robotics & Autonomous Systems', level: 90, color: 'from-gray-600 to-gray-800', icon: '🚀' },
-			{ name: 'Edge AI & TinyML', level: 87, color: 'from-emerald-500 to-green-600', icon: '⚡' },
-			{ name: 'CNNs & Transformers', level: 88, color: 'from-violet-500 to-purple-600', icon: '🔄' },
-			{ name: 'LLMs & YOLOv11', level: 85, color: 'from-fuchsia-500 to-pink-600', icon: '🎯' },
-			{ name: 'SLAM & ROS2', level: 92, color: 'from-blue-500 to-indigo-600', icon: '🗺️' }
+			{ name: 'JavaScript', level: 88, color: 'from-yellow-400 to-orange-500', icon: '🟨' }
 		],
 		frameworks: [
-			{ name: 'Django & DRF', level: 90, color: 'from-green-500 to-emerald-600', icon: '🧱' },
-			{ name: 'FastAPI', level: 88, color: 'from-teal-500 to-cyan-600', icon: '⚡' },
-			{ name: 'React & Next.js', level: 86, color: 'from-blue-500 to-indigo-700', icon: '⚛️' },
-			{ name: 'OpenCV & NumPy', level: 92, color: 'from-red-500 to-pink-600', icon: '📷' },
-			{ name: 'Pandas & PostgreSQL', level: 88, color: 'from-blue-400 to-cyan-500', icon: '📊' },
-			{ name: 'MySQL & Git/Linux', level: 90, color: 'from-orange-500 to-red-600', icon: '🐧' },
-			{ name: 'Docker & Kubernetes', level: 85, color: 'from-blue-600 to-indigo-700', icon: '🐳' },
-			{ name: 'Selenium & BeautifulSoup', level: 82, color: 'from-green-400 to-emerald-500', icon: '🕷️' }
+			{ name: 'FastAPI', level: 90, color: 'from-teal-500 to-cyan-600', icon: '⚡' },
+			{ name: 'Django', level: 88, color: 'from-green-500 to-emerald-600', icon: '🧱' },
+			{ name: 'PyTorch', level: 88, color: 'from-red-500 to-orange-600', icon: '🔥' },
+			{ name: 'LangGraph', level: 85, color: 'from-purple-500 to-pink-600', icon: '🧠' },
+			{ name: 'OpenCV', level: 92, color: 'from-red-500 to-pink-600', icon: '📷' },
+			{ name: 'NumPy & Pandas', level: 92, color: 'from-blue-400 to-cyan-500', icon: '📊' }
 		],
-		coreTech: [
+		storage: [
+			{ name: 'Qdrant', level: 85, color: 'from-purple-500 to-indigo-600', icon: '🎯' },
+			{ name: 'Neo4j', level: 82, color: 'from-blue-500 to-cyan-600', icon: '🔗' },
+			{ name: 'Redis', level: 88, color: 'from-red-500 to-orange-600', icon: '⚡' },
+			{ name: 'REST APIs', level: 92, color: 'from-green-500 to-teal-600', icon: '🌐' },
+			{ name: 'CI/CD Pipelines', level: 87, color: 'from-blue-600 to-indigo-700', icon: '🔄' }
+		],
+		infrastructure: [
+			{ name: 'Docker', level: 90, color: 'from-blue-600 to-indigo-700', icon: '🐳' },
+			{ name: 'Kubernetes', level: 85, color: 'from-blue-500 to-cyan-600', icon: '☸️' },
+			{ name: 'Supabase', level: 82, color: 'from-green-500 to-emerald-600', icon: '🗄️' },
+			{ name: 'PostgreSQL', level: 92, color: 'from-blue-400 to-blue-600', icon: '🗃️' },
+			{ name: 'Linux & Git', level: 95, color: 'from-orange-500 to-red-600', icon: '🐧' }
+		],
+		concepts: [
 			{ name: 'Data Structures & Algorithms', level: 92, color: 'from-purple-500 to-indigo-600', icon: '🏗️' },
 			{ name: 'Object-Oriented Programming', level: 95, color: 'from-blue-500 to-cyan-600', icon: '🔧' },
-			{ name: 'Database Systems', level: 88, color: 'from-green-500 to-teal-600', icon: '💾' },
 			{ name: 'Operating Systems', level: 85, color: 'from-gray-500 to-gray-700', icon: '💻' },
+			{ name: 'Database Management', level: 88, color: 'from-green-500 to-teal-600', icon: '💾' },
 			{ name: 'Computer Networks', level: 82, color: 'from-indigo-500 to-purple-600', icon: '🌐' },
-			{ name: 'Edge Accelerators & Model Optimization', level: 87, color: 'from-orange-500 to-red-600', icon: '🚀' },
-			{ name: 'Federated Learning', level: 80, color: 'from-pink-500 to-rose-600', icon: '🔗' },
-			{ name: 'AI Agent Deployment', level: 85, color: 'from-violet-500 to-purple-600', icon: '🤖' }
+			{ name: 'Cryptography', level: 80, color: 'from-red-500 to-pink-600', icon: '🔐' },
+			{ name: 'Machine Learning', level: 90, color: 'from-yellow-500 to-orange-600', icon: '🤖' },
+			{ name: 'Deep Learning', level: 88, color: 'from-pink-500 to-rose-600', icon: '🧮' },
+			{ name: 'Computer Vision', level: 92, color: 'from-cyan-500 to-blue-600', icon: '👁️' },
+			{ name: 'Natural Language Processing', level: 87, color: 'from-violet-500 to-purple-600', icon: '📝' }
 		]
 	};
 
@@ -198,10 +200,11 @@
 
 		const tabsHtml = `
 			<div class="flex flex-wrap justify-center mb-8 bg-white dark:bg-gray-900 rounded-full p-2 shadow-lg max-w-4xl mx-auto">
-				<button class="skill-tab active px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="programming">Programming Languages</button>
-				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="aiRobotics">AI & Robotics</button>
-				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="frameworks">Frameworks & Tools</button>
-				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="coreTech">Core Technologies</button>
+				<button class="skill-tab active px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="languages">Languages</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="frameworks">Frameworks & Core</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="storage">Data & Orchestration</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="infrastructure">Infrastructure</button>
+				<button class="skill-tab px-6 py-3 rounded-full font-semibold transition-all duration-300" data-category="concepts">Concepts</button>
 			</div>
 			<div id="skills-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 		`;
@@ -217,7 +220,7 @@
 			});
 		});
 
-		switchSkillCategory('programming');
+		switchSkillCategory('languages');
 	}
 
 	function switchSkillCategory(category) {

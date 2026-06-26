@@ -38,13 +38,22 @@
 				<!-- Description -->
 				<div class="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
 					<p class="sr-reveal" style="--sr-delay:0ms">
-					I'm <strong class="text-gray-900 dark:text-white">Krish Ray</strong>, a passionate Software Engineer pursuing B.Tech in Computer Science at Manipal University Jaipur (CGPA: 8.84/10.0). With hands-on international internship experience in Robotics, AI/ML, and Full-Stack Development, I specialize in building production-grade autonomous systems and intelligent applications.
+					I'm <strong class="text-gray-900 dark:text-white">Krish Ray</strong>, a software engineer pursuing a B.Tech in Computer Science and Engineering at Manipal University Jaipur (CGPA: 8.94/10.0), with specialized training in TinyML, Edge Accelerators, Model Optimization, and Federated Learning at the Indian Institute of Science, Bengaluru.
 					</p>
 					<p class="sr-reveal" style="--sr-delay:120ms">
-					My expertise spans <strong class="text-blue-600">Python</strong>, <strong class="text-green-600">ROS2</strong>, <strong class="text-orange-600">FastAPI</strong>, <strong class="text-purple-600">Django</strong>, and <strong class="text-indigo-600">LangGraph</strong>. I've built end-to-end solutions including autonomous mobile manipulators, real-time perception systems, and agentic AI orchestrators. I'm passionate about edge AI, deep learning, and creating systems that solve complex real-world problems.
+					I bring hands-on experience across enterprise software, AI/ML research, and full-stack development:
 					</p>
 					<p class="sr-reveal" style="--sr-delay:240ms">
-					Currently exploring TinyML and federated learning through the ACM India Winter School on Edge AI. I'm committed to pushing the boundaries of autonomous systems, computer vision, and intelligent automation to create impactful technology.
+					At <strong class="text-gray-900 dark:text-white">Accenture</strong>, I contributed to the Oracle HCM Cloud project, gaining exposure to enterprise workflows and cloud systems.
+					</p>
+					<p class="sr-reveal" style="--sr-delay:360ms">
+					As a Research Intern in Robotics &amp; AI at Hochschule Zittau/Görlitz, I engineered DogBot, an autonomous mobile manipulator powered by ROS2, SLAM, and YOLOv11, achieving a 95%+ success rate in real-world pick-and-place tasks.
+					</p>
+					<p class="sr-reveal" style="--sr-delay:480ms">
+					At <strong class="text-gray-900 dark:text-white">TechSolvo LLP</strong>, I developed AI-integrated Django features, automated scraping pipelines, and optimized backend APIs, boosting efficiency by 60%.
+					</p>
+					<p class="sr-reveal" style="--sr-delay:600ms">
+					I'm passionate about building scalable systems, advancing edge AI, and creating intelligent automation that solves real-world problems.
 					</p>
 				</div>
 
@@ -291,7 +300,7 @@
 <script>
 // Scroll-reveal Netflix-style animation engine
 function scrollRevealInit() {
-	const revealEls = document.querySelectorAll('.sr-reveal, .sr-card, .sr-zoom');
+	const revealEls = document.querySelectorAll('.sr-reveal, .sr-card, .sr-zoom') as NodeListOf<HTMLElement>;
 	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	if (prefersReducedMotion) {
 		revealEls.forEach(el => el.classList.add('sr-visible'));
@@ -299,10 +308,11 @@ function scrollRevealInit() {
 	}
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
+			const target = entry.target as HTMLElement;
 			if (entry.isIntersecting) {
-				entry.target.classList.add('sr-visible');
+				target.classList.add('sr-visible');
 			} else {
-				entry.target.classList.remove('sr-visible');
+				target.classList.remove('sr-visible');
 			}
 		});
 	}, { threshold: 0.3 });
@@ -311,11 +321,12 @@ function scrollRevealInit() {
 
 // Counter animation (only when visible)
 function animateCounters() {
-	const counters = document.querySelectorAll('.sr-card .counter');
+	const counters = document.querySelectorAll('.sr-card .counter') as NodeListOf<HTMLElement>;
 	counters.forEach(counterEl => {
 		let started = false;
 		const parent = counterEl.closest('.sr-card');
-		const target = parseInt(parent.dataset.target);
+		if (!(parent instanceof HTMLElement)) return;
+		const target = parseInt(parent.dataset.target || '0', 10);
 		const increment = target / 50;
 		let current = 0;
 		const observer = new IntersectionObserver((entries) => {
@@ -342,11 +353,12 @@ function animateCounters() {
 
 // Skill bars animation (only when visible)
 function animateSkillBars() {
-	const skillItems = document.querySelectorAll('.skill-item');
+	const skillItems = document.querySelectorAll('.skill-item') as NodeListOf<HTMLElement>;
 	skillItems.forEach(item => {
 		let animated = false;
-		const skillBar = item.querySelector('.skill-bar');
-		const skillPercentage = item.dataset.skill;
+		const skillBar = item.querySelector('.skill-bar') as HTMLElement | null;
+		if (!skillBar) return;
+		const skillPercentage = item.dataset.skill || '0';
 		const observer = new IntersectionObserver((entries) => {
 			entries.forEach(entry => {
 				if (entry.isIntersecting && !animated) {
